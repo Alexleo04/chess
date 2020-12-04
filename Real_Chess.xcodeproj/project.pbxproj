@@ -11,7 +11,34 @@
 		F4D0731B257AAD8A006A9ACB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0731A257AAD8A006A9ACB /* ContentView.swift */; };
 		F4D0731D257AAD8C006A9ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D0731C257AAD8C006A9ACB /* Assets.xcassets */; };
 		F4D07320257AAD8C006A9ACB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D0731F257AAD8C006A9ACB /* Preview Assets.xcassets */; };
+		F4D07329257AAE46006A9ACB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07328257AAE46006A9ACB /* Color.swift */; };
+		F4D0732C257AAE7A006A9ACB /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0732B257AAE7A006A9ACB /* Letter.swift */; };
+		F4D0732F257AAF21006A9ACB /* Pawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0732E257AAF21006A9ACB /* Pawn.swift */; };
+		F4D07333257AAF70006A9ACB /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07332257AAF70006A9ACB /* Point.swift */; };
+		F4D07336257AAFB3006A9ACB /* Figure.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07335257AAFB3006A9ACB /* Figure.swift */; };
+		F4D0733A257AB017006A9ACB /* King.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07339257AB017006A9ACB /* King.swift */; };
+		F4D0733D257AB031006A9ACB /* Queen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0733C257AB031006A9ACB /* Queen.swift */; };
+		F4D07340257AB049006A9ACB /* Bishop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0733F257AB049006A9ACB /* Bishop.swift */; };
+		F4D07343257AB05C006A9ACB /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07342257AB05C006A9ACB /* Knight.swift */; };
+		F4D07346257AB079006A9ACB /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07345257AB079006A9ACB /* Tower.swift */; };
+		F4D07349257AB09D006A9ACB /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07348257AB09D006A9ACB /* Board.swift */; };
+		F4D07352257AB124006A9ACB /* Real_ChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07351257AB124006A9ACB /* Real_ChessTests.swift */; };
+		F4D0735C257AB16A006A9ACB /* Pawn_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0735B257AB16A006A9ACB /* Pawn_Test.swift */; };
+		F4D07362257AB8C8006A9ACB /* King_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07361257AB8C8006A9ACB /* King_Test.swift */; };
+		F4D07366257ABA4F006A9ACB /* temporaryh.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07365257ABA4F006A9ACB /* temporaryh.swift */; };
+		F4D0736A257ABEC5006A9ACB /* Tower_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07369257ABEC5006A9ACB /* Tower_Test.swift */; };
+		F4D07370257AC04E006A9ACB /* Board_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0736F257AC04E006A9ACB /* Board_Test.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4D07354257AB124006A9ACB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4D0730D257AAD8A006A9ACB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4D07314257AAD8A006A9ACB;
+			remoteInfo = Real_Chess;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		F4D07315257AAD8A006A9ACB /* Real_Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Real_Chess.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -20,10 +47,36 @@
 		F4D0731C257AAD8C006A9ACB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4D0731F257AAD8C006A9ACB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F4D07321257AAD8C006A9ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4D07328257AAE46006A9ACB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F4D0732B257AAE7A006A9ACB /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
+		F4D0732E257AAF21006A9ACB /* Pawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pawn.swift; sourceTree = "<group>"; };
+		F4D07332257AAF70006A9ACB /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		F4D07335257AAFB3006A9ACB /* Figure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Figure.swift; sourceTree = "<group>"; };
+		F4D07339257AB017006A9ACB /* King.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = King.swift; sourceTree = "<group>"; };
+		F4D0733C257AB031006A9ACB /* Queen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queen.swift; sourceTree = "<group>"; };
+		F4D0733F257AB049006A9ACB /* Bishop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bishop.swift; sourceTree = "<group>"; };
+		F4D07342257AB05C006A9ACB /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
+		F4D07345257AB079006A9ACB /* Tower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
+		F4D07348257AB09D006A9ACB /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		F4D0734F257AB124006A9ACB /* Real_ChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Real_ChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4D07351257AB124006A9ACB /* Real_ChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Real_ChessTests.swift; sourceTree = "<group>"; };
+		F4D07353257AB124006A9ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4D0735B257AB16A006A9ACB /* Pawn_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pawn_Test.swift; sourceTree = "<group>"; };
+		F4D07361257AB8C8006A9ACB /* King_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = King_Test.swift; sourceTree = "<group>"; };
+		F4D07365257ABA4F006A9ACB /* temporaryh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temporaryh.swift; sourceTree = "<group>"; };
+		F4D07369257ABEC5006A9ACB /* Tower_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tower_Test.swift; sourceTree = "<group>"; };
+		F4D0736F257AC04E006A9ACB /* Board_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board_Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F4D07312257AAD8A006A9ACB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D0734C257AB124006A9ACB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				F4D07317257AAD8A006A9ACB /* Real_Chess */,
+				F4D07350257AB124006A9ACB /* Real_ChessTests */,
 				F4D07316257AAD8A006A9ACB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				F4D07315257AAD8A006A9ACB /* Real_Chess.app */,
+				F4D0734F257AB124006A9ACB /* Real_ChessTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,6 +112,17 @@
 				F4D0731C257AAD8C006A9ACB /* Assets.xcassets */,
 				F4D07321257AAD8C006A9ACB /* Info.plist */,
 				F4D0731E257AAD8C006A9ACB /* Preview Content */,
+				F4D07335257AAFB3006A9ACB /* Figure.swift */,
+				F4D07328257AAE46006A9ACB /* Color.swift */,
+				F4D0732B257AAE7A006A9ACB /* Letter.swift */,
+				F4D07332257AAF70006A9ACB /* Point.swift */,
+				F4D0732E257AAF21006A9ACB /* Pawn.swift */,
+				F4D07339257AB017006A9ACB /* King.swift */,
+				F4D0733C257AB031006A9ACB /* Queen.swift */,
+				F4D0733F257AB049006A9ACB /* Bishop.swift */,
+				F4D07342257AB05C006A9ACB /* Knight.swift */,
+				F4D07345257AB079006A9ACB /* Tower.swift */,
+				F4D07348257AB09D006A9ACB /* Board.swift */,
 			);
 			path = Real_Chess;
 			sourceTree = "<group>";
@@ -67,6 +133,20 @@
 				F4D0731F257AAD8C006A9ACB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F4D07350257AB124006A9ACB /* Real_ChessTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4D07351257AB124006A9ACB /* Real_ChessTests.swift */,
+				F4D0735B257AB16A006A9ACB /* Pawn_Test.swift */,
+				F4D07361257AB8C8006A9ACB /* King_Test.swift */,
+				F4D07369257ABEC5006A9ACB /* Tower_Test.swift */,
+				F4D07365257ABA4F006A9ACB /* temporaryh.swift */,
+				F4D0736F257AC04E006A9ACB /* Board_Test.swift */,
+				F4D07353257AB124006A9ACB /* Info.plist */,
+			);
+			path = Real_ChessTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,6 +169,24 @@
 			productReference = F4D07315257AAD8A006A9ACB /* Real_Chess.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F4D0734E257AB124006A9ACB /* Real_ChessTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4D07356257AB124006A9ACB /* Build configuration list for PBXNativeTarget "Real_ChessTests" */;
+			buildPhases = (
+				F4D0734B257AB124006A9ACB /* Sources */,
+				F4D0734C257AB124006A9ACB /* Frameworks */,
+				F4D0734D257AB124006A9ACB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4D07355257AB124006A9ACB /* PBXTargetDependency */,
+			);
+			name = Real_ChessTests;
+			productName = Real_ChessTests;
+			productReference = F4D0734F257AB124006A9ACB /* Real_ChessTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -100,6 +198,10 @@
 				TargetAttributes = {
 					F4D07314257AAD8A006A9ACB = {
 						CreatedOnToolsVersion = 12.0;
+					};
+					F4D0734E257AB124006A9ACB = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = F4D07314257AAD8A006A9ACB;
 					};
 				};
 			};
@@ -117,6 +219,7 @@
 			projectRoot = "";
 			targets = (
 				F4D07314257AAD8A006A9ACB /* Real_Chess */,
+				F4D0734E257AB124006A9ACB /* Real_ChessTests */,
 			);
 		};
 /* End PBXProject section */
@@ -131,6 +234,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F4D0734D257AB124006A9ACB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -140,10 +250,42 @@
 			files = (
 				F4D0731B257AAD8A006A9ACB /* ContentView.swift in Sources */,
 				F4D07319257AAD8A006A9ACB /* Real_ChessApp.swift in Sources */,
+				F4D07336257AAFB3006A9ACB /* Figure.swift in Sources */,
+				F4D07346257AB079006A9ACB /* Tower.swift in Sources */,
+				F4D0733D257AB031006A9ACB /* Queen.swift in Sources */,
+				F4D07333257AAF70006A9ACB /* Point.swift in Sources */,
+				F4D07349257AB09D006A9ACB /* Board.swift in Sources */,
+				F4D07329257AAE46006A9ACB /* Color.swift in Sources */,
+				F4D07340257AB049006A9ACB /* Bishop.swift in Sources */,
+				F4D0732C257AAE7A006A9ACB /* Letter.swift in Sources */,
+				F4D0733A257AB017006A9ACB /* King.swift in Sources */,
+				F4D07343257AB05C006A9ACB /* Knight.swift in Sources */,
+				F4D0732F257AAF21006A9ACB /* Pawn.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4D0734B257AB124006A9ACB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4D0736A257ABEC5006A9ACB /* Tower_Test.swift in Sources */,
+				F4D07352257AB124006A9ACB /* Real_ChessTests.swift in Sources */,
+				F4D07370257AC04E006A9ACB /* Board_Test.swift in Sources */,
+				F4D07362257AB8C8006A9ACB /* King_Test.swift in Sources */,
+				F4D07366257ABA4F006A9ACB /* temporaryh.swift in Sources */,
+				F4D0735C257AB16A006A9ACB /* Pawn_Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4D07355257AB124006A9ACB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4D07314257AAD8A006A9ACB /* Real_Chess */;
+			targetProxy = F4D07354257AB124006A9ACB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F4D07322257AAD8C006A9ACB /* Debug */ = {
@@ -304,6 +446,44 @@
 			};
 			name = Release;
 		};
+		F4D07357257AB124006A9ACB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Real_ChessTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "aleonov.Real-ChessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Real_Chess.app/Real_Chess";
+			};
+			name = Debug;
+		};
+		F4D07358257AB124006A9ACB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Real_ChessTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "aleonov.Real-ChessTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Real_Chess.app/Real_Chess";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -321,6 +501,15 @@
 			buildConfigurations = (
 				F4D07325257AAD8C006A9ACB /* Debug */,
 				F4D07326257AAD8C006A9ACB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4D07356257AB124006A9ACB /* Build configuration list for PBXNativeTarget "Real_ChessTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4D07357257AB124006A9ACB /* Debug */,
+				F4D07358257AB124006A9ACB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
