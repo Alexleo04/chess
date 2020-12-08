@@ -10,8 +10,8 @@ class Pawn: Figure{
     init(_ color: Color){
         super.init("🖱", color)
     }
-    
-    func canMove(from: Point, to: Point) -> Bool{
+
+    override func canMove(from: Point, to: Point) -> Bool{
         if from.digit+1 == to.digit && from.letter == to.letter{
             return true
         }

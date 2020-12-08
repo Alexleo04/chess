@@ -10,7 +10,8 @@ class Queen: Figure{
     init(_ color: Color){
         super.init("👸🏻", color)
     }
-    func canMove(from: Point, to: Point) -> Bool {
+
+    override func canMove(from: Point, to: Point) -> Bool {
         if from.digit - to.digit == from.letter.rawValue - to.letter.rawValue{
             return true
         }

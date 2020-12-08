@@ -28,6 +28,7 @@
 		F4D07366257ABA4F006A9ACB /* temporaryh.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07365257ABA4F006A9ACB /* temporaryh.swift */; };
 		F4D0736A257ABEC5006A9ACB /* Tower_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07369257ABEC5006A9ACB /* Tower_Test.swift */; };
 		F4D07370257AC04E006A9ACB /* Board_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0736F257AC04E006A9ACB /* Board_Test.swift */; };
+		F4D07374257FF5D3006A9ACB /* Bishop_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07373257FF5D3006A9ACB /* Bishop_Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		F4D07365257ABA4F006A9ACB /* temporaryh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = temporaryh.swift; sourceTree = "<group>"; };
 		F4D07369257ABEC5006A9ACB /* Tower_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tower_Test.swift; sourceTree = "<group>"; };
 		F4D0736F257AC04E006A9ACB /* Board_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board_Test.swift; sourceTree = "<group>"; };
+		F4D07373257FF5D3006A9ACB /* Bishop_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bishop_Test.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				F4D0735B257AB16A006A9ACB /* Pawn_Test.swift */,
 				F4D07361257AB8C8006A9ACB /* King_Test.swift */,
 				F4D07369257ABEC5006A9ACB /* Tower_Test.swift */,
+				F4D07373257FF5D3006A9ACB /* Bishop_Test.swift */,
 				F4D07365257ABA4F006A9ACB /* temporaryh.swift */,
 				F4D0736F257AC04E006A9ACB /* Board_Test.swift */,
 				F4D07353257AB124006A9ACB /* Info.plist */,
@@ -272,6 +275,7 @@
 				F4D07352257AB124006A9ACB /* Real_ChessTests.swift in Sources */,
 				F4D07370257AC04E006A9ACB /* Board_Test.swift in Sources */,
 				F4D07362257AB8C8006A9ACB /* King_Test.swift in Sources */,
+				F4D07374257FF5D3006A9ACB /* Bishop_Test.swift in Sources */,
 				F4D07366257ABA4F006A9ACB /* temporaryh.swift in Sources */,
 				F4D0735C257AB16A006A9ACB /* Pawn_Test.swift in Sources */,
 			);

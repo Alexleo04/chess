@@ -15,9 +15,10 @@ class Board_Test: XCTestCase {
         board = Board()
     }
     func test(){
-        var testPoint = Point(letter: .a, digit: 2);
-        board.figureSpawner(pos: testPoint, fig: Knight(.black))
-        XCTAssertNotNil(board.figureReciever(pos: testPoint), "Expected Figure")
+        var fromPoint = Point(letter: .d, digit: 1);
+        var toPoint = Point(letter: .d, digit: 8);
+        board.figureSpawner(pos: fromPoint, fig: Queen(.white))
+        XCTAssertTrue(board.canMove(fromPoint, toPoint))
     }
     override func tearDown() {
         super.tearDown()

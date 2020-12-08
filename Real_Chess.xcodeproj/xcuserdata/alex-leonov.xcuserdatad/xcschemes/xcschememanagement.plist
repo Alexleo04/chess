@@ -4,10 +4,24 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Real_Chess.xcscheme_^#shared#^_</key>
+		<key>Real_Chess.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>King_Test.testCanMoveSuccessfully.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Board_Test.test.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 </dict>

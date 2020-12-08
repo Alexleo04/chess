@@ -10,8 +10,8 @@ class King: Figure{
     init(_ color: Color){
         super.init("🤴🏿", color)
     }
-    
-    func canMove(from: Point, to: Point) -> Bool{
+
+    override func canMove(from: Point, to: Point) -> Bool{
         let digitDiff = from.digit - to.digit;
         let letterDiff = from.letter.rawValue - to.letter.rawValue;
         if digitDiff >= -1 && digitDiff <= 1 && letterDiff <= 1 && letterDiff >= -1{

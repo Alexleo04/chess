@@ -10,7 +10,8 @@ class Knight: Figure{
     init(_ color: Color){
         super.init("🐎", color)
     }
-    func canMove(from: Point, to: Point) -> Bool {
+
+    override func canMove(from: Point, to: Point) -> Bool {
         if from.letter.rawValue == to.letter.rawValue+2 || from.letter.rawValue == to.letter.rawValue-2{
             if from.digit == to.digit+1 || from.digit == to.digit-1{
                 return true

@@ -13,4 +13,7 @@ class Figure{
         self.name = name
         self.color = color
     }
+    func canMove(from: Point, to: Point) -> Bool{
+        return false
+    }
 }
