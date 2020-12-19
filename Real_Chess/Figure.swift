@@ -16,4 +16,7 @@ class Figure{
     func canMove(from: Point, to: Point) -> Bool{
         return false
     }
+    func myPath(from: Point, to: Point) -> [Point]{
+        return []
+    }
 }

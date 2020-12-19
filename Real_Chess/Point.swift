@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Point{
+struct Point: Equatable{
     var letter: Letter
     var digit: Int
 }

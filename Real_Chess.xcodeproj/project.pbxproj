@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4B772CF0AD0157A4FC42B4A /* Queen_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B7797686C496910C017A2C /* Queen_Test.swift */; };
 		F4D07319257AAD8A006A9ACB /* Real_ChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07318257AAD8A006A9ACB /* Real_ChessApp.swift */; };
 		F4D0731B257AAD8A006A9ACB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0731A257AAD8A006A9ACB /* ContentView.swift */; };
 		F4D0731D257AAD8C006A9ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D0731C257AAD8C006A9ACB /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4B7797686C496910C017A2C /* Queen_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queen_Test.swift; sourceTree = "<group>"; };
 		F4D07315257AAD8A006A9ACB /* Real_Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Real_Chess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D07318257AAD8A006A9ACB /* Real_ChessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Real_ChessApp.swift; sourceTree = "<group>"; };
 		F4D0731A257AAD8A006A9ACB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				F4D07365257ABA4F006A9ACB /* temporaryh.swift */,
 				F4D0736F257AC04E006A9ACB /* Board_Test.swift */,
 				F4D07353257AB124006A9ACB /* Info.plist */,
+				B4B7797686C496910C017A2C /* Queen_Test.swift */,
 			);
 			path = Real_ChessTests;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				F4D07374257FF5D3006A9ACB /* Bishop_Test.swift in Sources */,
 				F4D07366257ABA4F006A9ACB /* temporaryh.swift in Sources */,
 				F4D0735C257AB16A006A9ACB /* Pawn_Test.swift in Sources */,
+				B4B772CF0AD0157A4FC42B4A /* Queen_Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

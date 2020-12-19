@@ -19,4 +19,7 @@ class King: Figure{
         }
         return false
     }
+    override func myPath(from: Point, to: Point) -> [Point]{
+        return []
+    }
 }

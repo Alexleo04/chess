@@ -65,8 +65,7 @@ class Board{
         if !constFig.canMove(from: from, to: to){
             return false
         }
-        //5. Clear path?
-
+    //5. Clear path
         return true
     }
 

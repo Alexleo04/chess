@@ -20,4 +20,38 @@ class Bishop: Figure{
         }
         return false
     }
+
+    override func myPath(from: Point, to: Point) -> [Point]{
+        var distancePro: [Point] = []
+        if from.digit - to.digit == from.letter.rawValue - to.letter.rawValue{
+            if to.digit > from.digit{
+                var distance = to.digit - from.digit - 1
+                for i in 1...distance{
+                    distancePro.append(Point(letter: Letter(rawValue: from.letter.rawValue + i)!, digit: from.digit + i))
+                }
+            }
+            if to.digit < from.digit{
+                var distance = from.digit - to.digit - 1
+                for i in 1...distance{
+                    distancePro.append(Point(letter: Letter(rawValue: from.letter.rawValue - i)!, digit: from.digit - i))
+                }
+            }
+        }
+        else{
+            if to.digit > from.digit{
+                var distance = to.digit - from.digit - 1
+                for i in 1...distance{
+                    distancePro.append(Point(letter: Letter(rawValue: from.letter.rawValue - i)!, digit: from.digit + i))
+                }
+            }
+            if to.digit < from.digit{
+                var distance = from.digit - to.digit - 1
+                for i in 1...distance{
+                    distancePro.append(Point(letter: Letter(rawValue: from.letter.rawValue + i)!, digit: from.digit - i))
+                }
+            }
+        }
+        return distancePro
+    }
 }
+//d4 e5 f6
