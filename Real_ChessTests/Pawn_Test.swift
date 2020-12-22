@@ -24,6 +24,11 @@ class Pawn_Test: XCTestCase {
         XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 2), to: Point(letter: .b, digit: 4)))
         XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 2), to: Point(letter: .a, digit: 1)))
     }
+    func testMyPath(){
+        XCTAssertEqual(pawn.myPath(from: Point(letter: .e, digit: 2), to: Point(letter: .e, digit: 3)), [])
+        XCTAssertEqual(pawn.myPath(from: Point(letter: .c, digit: 2), to: Point(letter: .c, digit: 4)), [Point(letter: .c, digit: 3)])
+        XCTAssertEqual(pawn.myPath(from: Point(letter: .f, digit: 2), to: Point(letter: .f, digit: 4)), [Point(letter: .f, digit: 3)])
+    }
     override func tearDown() {
         super.tearDown()
         pawn = nil

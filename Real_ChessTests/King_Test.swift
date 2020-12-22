@@ -26,6 +26,9 @@ class King_Test: XCTestCase {
     func testCantMoveSuccessfully(){
         XCTAssertFalse(king.canMove(from: Point(letter: .e, digit: 2), to: Point(letter: .e, digit: 4)))
     }
+    func testMyPath(){
+        XCTAssertEqual(king.myPath(from: Point(letter: .e, digit: 2), to: Point(letter: .e, digit: 3)), [])
+    }
     override func tearDown() {
         super.tearDown()
         king = nil

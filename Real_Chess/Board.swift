@@ -55,17 +55,22 @@ class Board{
         if !isValid(from) || !isValid(to){
             return false
         }
-        //2. From != nil?
-        //3. To = nil?
-        if figureReciever(from) == nil || figureReciever(to) != nil{
+        //2. From != nil? && To = nil?
+        if figureConverterReciever(from) == nil || figureConverterReciever(to) != nil{
             return false
         }
-        //4. can figure move "from" --> "to"?
-        var constFig = figureReciever(from)!
+        //3. can figure move "from" --> "to"?
+        let constFig = figureConverterReciever(from)!
         if !constFig.canMove(from: from, to: to){
             return false
         }
-    //5. Clear path
+        //4. Clear path
+        var дорожнаяКарта = constFig.myPath(from: from, to: to)
+        for точка in дорожнаяКарта{
+            if figureConverterReciever(точка) != nil{
+                return false
+            }
+        }
         return true
     }
 
@@ -76,7 +81,7 @@ class Board{
     func figureSpawner(pos: Point, fig: Figure){
         board[pos.digit-1][pos.letter.rawValue-1] = fig
     }
-    func figureReciever(_ pos: Point) -> Figure?{
+    func figureConverterReciever(_ pos: Point) -> Figure?{
         return board[pos.digit-1][pos.letter.rawValue-1]
     }
 }

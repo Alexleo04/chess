@@ -20,5 +20,11 @@ class Pawn: Figure{
         }
         return false
     }
-    
+
+    override func myPath(from: Point, to: Point) -> [Point] {
+        if from.letter == to.letter && to.digit == 4 && from.digit == 2{
+            return [Point(letter: from.letter, digit: 3)]
+        }
+        return []
+    }
 }
