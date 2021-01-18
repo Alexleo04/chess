@@ -8,8 +8,8 @@
 import Foundation
 class Figure{
     var name: String
-    var color: Color
-    init(_ name: String, _ color: Color) {
+    var color: PlayerColor
+    init(_ name: String, _ color: PlayerColor) {
         self.name = name
         self.color = color
     }

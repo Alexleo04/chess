@@ -9,6 +9,10 @@ import Foundation
 class Board{
     private var board: [[Figure?]] = Array(repeating: [nil,nil,nil,nil,nil,nil,nil,nil], count: 8)
     
+    init(){
+        fillBoard()
+    }
+    
     func fillBoard(){
         board[0][0] = Tower(.white)
         board[0][1] = Knight(.white)
@@ -59,12 +63,12 @@ class Board{
         if figureConverterReciever(from) == nil || figureConverterReciever(to) != nil{
             return false
         }
-        //3. can figure move "from" --> "to"?
+        //3. can figure move "from" --> "to" (по правилам)?
         let constFig = figureConverterReciever(from)!
         if !constFig.canMove(from: from, to: to){
             return false
         }
-        //4. Clear path
+        //4. Clear path?
         var дорожнаяКарта = constFig.myPath(from: from, to: to)
         for точка in дорожнаяКарта{
             if figureConverterReciever(точка) != nil{

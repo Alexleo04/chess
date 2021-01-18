@@ -7,7 +7,7 @@
 
 import Foundation
 class King: Figure{
-    init(_ color: Color){
+    init(_ color: PlayerColor){
         super.init("🤴🏿", color)
     }
 

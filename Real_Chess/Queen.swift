@@ -7,7 +7,7 @@
 
 import Foundation
 class Queen: Figure{
-    init(_ color: Color){
+    init(_ color: PlayerColor){
         super.init("👸🏻", color)
     }
 

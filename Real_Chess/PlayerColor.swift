@@ -6,7 +6,7 @@
 //
 
 import Foundation
-enum Color: String{
+enum PlayerColor: String{
     case white = "White"
     case black = "Black"
 }

@@ -13,7 +13,7 @@
 		F4D0731B257AAD8A006A9ACB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0731A257AAD8A006A9ACB /* ContentView.swift */; };
 		F4D0731D257AAD8C006A9ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D0731C257AAD8C006A9ACB /* Assets.xcassets */; };
 		F4D07320257AAD8C006A9ACB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D0731F257AAD8C006A9ACB /* Preview Assets.xcassets */; };
-		F4D07329257AAE46006A9ACB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07328257AAE46006A9ACB /* Color.swift */; };
+		F4D07329257AAE46006A9ACB /* PlayerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07328257AAE46006A9ACB /* PlayerColor.swift */; };
 		F4D0732C257AAE7A006A9ACB /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0732B257AAE7A006A9ACB /* Letter.swift */; };
 		F4D0732F257AAF21006A9ACB /* Pawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0732E257AAF21006A9ACB /* Pawn.swift */; };
 		F4D07333257AAF70006A9ACB /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07332257AAF70006A9ACB /* Point.swift */; };
@@ -52,7 +52,7 @@
 		F4D0731C257AAD8C006A9ACB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F4D0731F257AAD8C006A9ACB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F4D07321257AAD8C006A9ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F4D07328257AAE46006A9ACB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F4D07328257AAE46006A9ACB /* PlayerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerColor.swift; sourceTree = "<group>"; };
 		F4D0732B257AAE7A006A9ACB /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
 		F4D0732E257AAF21006A9ACB /* Pawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pawn.swift; sourceTree = "<group>"; };
 		F4D07332257AAF70006A9ACB /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				F4D07321257AAD8C006A9ACB /* Info.plist */,
 				F4D0731E257AAD8C006A9ACB /* Preview Content */,
 				F4D07335257AAFB3006A9ACB /* Figure.swift */,
-				F4D07328257AAE46006A9ACB /* Color.swift */,
+				F4D07328257AAE46006A9ACB /* PlayerColor.swift */,
 				F4D0732B257AAE7A006A9ACB /* Letter.swift */,
 				F4D07332257AAF70006A9ACB /* Point.swift */,
 				F4D0732E257AAF21006A9ACB /* Pawn.swift */,
@@ -264,7 +264,7 @@
 				F4D0733D257AB031006A9ACB /* Queen.swift in Sources */,
 				F4D07333257AAF70006A9ACB /* Point.swift in Sources */,
 				F4D07349257AB09D006A9ACB /* Board.swift in Sources */,
-				F4D07329257AAE46006A9ACB /* Color.swift in Sources */,
+				F4D07329257AAE46006A9ACB /* PlayerColor.swift in Sources */,
 				F4D07340257AB049006A9ACB /* Bishop.swift in Sources */,
 				F4D0732C257AAE7A006A9ACB /* Letter.swift in Sources */,
 				F4D0733A257AB017006A9ACB /* King.swift in Sources */,
