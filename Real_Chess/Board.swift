@@ -85,7 +85,20 @@ class Board{
     func figureSpawner(pos: Point, fig: Figure){
         board[pos.digit-1][pos.letter.rawValue-1] = fig
     }
+    
+    func figureConverterRecieverIcon(_ pos: Point) -> String{
+        let figure = figureConverterReciever(pos)
+        
+        return figure?.name ?? ""
+    }
+    
     func figureConverterReciever(_ pos: Point) -> Figure?{
         return board[pos.digit-1][pos.letter.rawValue-1]
     }
+    
+    // add check letter and digit before creating
+    func helperCreatePoint(letterNum: Int, digitNum: Int) -> Point{
+        return Point(letter: Letter(rawValue: letterNum) ?? .a, digit: digitNum)
+    }
+    
 }

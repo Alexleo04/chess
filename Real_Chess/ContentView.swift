@@ -11,89 +11,63 @@
 
 import SwiftUI
 
+//                Cell(color: Color.black, content: board.figureConverterReciever(Point(letter: .a, digit: 8))!.name)
+
+
 struct ContentView: View {
     var board: Board = Board()
+    
+    var letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
+    
     var body: some View {
         VStack{
+            
             HStack(spacing: 0){
-                Cell(color: Color.black, content: board.figureConverterReciever(Point(letter: .a, digit: 8))!.name)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
+                ForEach((1..<9)) { col in
+                    HeaderCell(color: Color.white, content: letters[col]!)
+                }
             }
-            HStack(spacing: 0){
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-            }
-            HStack(spacing: 0){
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-            }
-            HStack(spacing: 0){
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-            }
-            HStack(spacing: 0){
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-            }
-            HStack(spacing: 0){
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-            }
-            HStack(spacing: 0){
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-            }
-            HStack(spacing: 0){
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
-                Cell(color: Color.white)
-                Cell(color: Color.black)
+            
+            ForEach((1..<9)) { row in
+                var testRow: Int = row
+                if row%2 == 1 {
+                    HStack(spacing: 0){
+                        HeaderCell(color: Color.white, content: String(row))
+                        ForEach((1..<9)) { col in
+                   
+                            var testCol: Int = col
+                            
+                            let point = board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
+                            
+                            let cellContent = board.figureConverterRecieverIcon(point)
+                        
+                            if col%2 == 1{
+                                Cell(color: Color.white, content: cellContent)
+                            }else{
+                                Cell(color: Color.black, content: cellContent)
+                            }
+                        }
+                        HeaderCell(color: Color.white)
+                    }
+                }else{
+                    HStack(spacing: 0){
+                        HeaderCell(color: Color.white, content: String(row))
+                        ForEach((1..<9)) { col in
+                            var testCol: Int = col
+                            
+                            let point = board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
+                            
+                            let cellContent = board.figureConverterRecieverIcon(point)
+                        
+                            if col%2 == 1{
+                                Cell(color: Color.black, content: cellContent)
+                            }else{
+                                Cell(color: Color.white, content: cellContent)
+                            }
+                        }
+                        HeaderCell(color: Color.white)
+                    }
+                }
             }
         }
     }
@@ -111,7 +85,18 @@ struct Cell: View{
         .frame(width: 37.5, height: 37.5)
         .background(color)
         .border(Color.black, width: 0.5)
+    }
 }
+
+struct HeaderCell: View{
+    var color: Color
+    var content: String = ""
+    var body: some View{
+        Text(content)
+        .frame(width: 37.5, height: 37.5)
+        .background(color)
+        //.border(Color.black, width: 0.5)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
