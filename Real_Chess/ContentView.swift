@@ -15,7 +15,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    var board: Board = Board()
+    @StateObject var board: Board = Board()
     
     var letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
     
@@ -69,6 +69,9 @@ struct ContentView: View {
                     }
                 }
             }
+        }
+        Button("moveOrEat"){
+            board.moveOrEat(Point(letter: .d, digit: 7), Point(letter: .d, digit: 5))
         }
     }
 }

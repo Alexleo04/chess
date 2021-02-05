@@ -6,8 +6,8 @@
 //
 
 import Foundation
-class Board{
-    private var board: [[Figure?]] = Array(repeating: [nil,nil,nil,nil,nil,nil,nil,nil], count: 8)
+class Board: ObservableObject{
+    @Published private var board: [[Figure?]] = Array(repeating: [nil,nil,nil,nil,nil,nil,nil,nil], count: 8)
     
     init(){
         fillBoard()
@@ -54,27 +54,60 @@ class Board{
         }
     }
 
-    func canMove(_ from: Point, _ to: Point) -> Bool{
+    
+    func moveOrEat(_ from: Point, _ to: Point){
+        // check if enemy in dest
+        let figureInToCell = figureConverterReciever(to)
+        let figureInFromCell = figureConverterReciever(from)
+        
+        if figureInToCell == nil{
+            if canMove(from, to, false){
+                figureSpawner(pos: to, fig: figureInFromCell!)
+                clearCell(from)
+            }
+        }
+        
+        // yes -> moveAndEat() - take enemy figure, move your figure
+        // no -> move()
+    }
+           
+    func canMove(_ from: Point, _ to: Point, _ isEat: Bool) -> Bool{
         //1. Valiдность обеих точек
         if !isValid(from) || !isValid(to){
             return false
         }
         //2. From != nil? && To = nil?
-        if figureConverterReciever(from) == nil || figureConverterReciever(to) != nil{
+        let figureInFromCell = figureConverterReciever(from)
+        if figureInFromCell == nil {
             return false
         }
+        
+        // 2.1
+        let figureInToCell = figureConverterReciever(to)
+        
+        if isEat && (figureInToCell == nil || figureInToCell!.color == figureInFromCell!.color) {
+            return false
+        }
+        
+        if !isEat && (figureInToCell != nil) {
+            return false
+        }
+        
         //3. can figure move "from" --> "to" (по правилам)?
         let constFig = figureConverterReciever(from)!
         if !constFig.canMove(from: from, to: to){
             return false
         }
         //4. Clear path?
-        var дорожнаяКарта = constFig.myPath(from: from, to: to)
+        let дорожнаяКарта = constFig.myPath(from: from, to: to)
         for точка in дорожнаяКарта{
             if figureConverterReciever(точка) != nil{
                 return false
             }
         }
+        
+        // move figure
+        
         return true
     }
 
@@ -82,6 +115,10 @@ class Board{
         return random.digit <= 8 && random.digit > 0
     }
 
+    func clearCell(_ point: Point){
+        board[point.digit-1][point.letter.rawValue-1] = nil
+    }
+    
     func figureSpawner(pos: Point, fig: Figure){
         board[pos.digit-1][pos.letter.rawValue-1] = fig
     }
