@@ -18,6 +18,9 @@ class Pawn: Figure{
         if from.digit == 2 && to.digit == 4 && from.letter == to.letter{
             return true
         }
+        if from.digit == 7 && to.digit == 5 && from.letter == to.letter{
+            return true
+        }
         return false
     }
 
