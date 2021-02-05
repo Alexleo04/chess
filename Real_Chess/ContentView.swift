@@ -39,7 +39,7 @@ struct ContentView: View {
                             
                             let point = board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
                             
-                            let cellContent = board.figureConverterRecieverIcon(point)
+                            let cellContent = board.getFigureIconByPoint(point)
                         
                             if col%2 == 1{
                                 Cell(color: Color.white, content: cellContent)
@@ -57,7 +57,7 @@ struct ContentView: View {
                             
                             let point = board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
                             
-                            let cellContent = board.figureConverterRecieverIcon(point)
+                            let cellContent = board.getFigureIconByPoint(point)
                         
                             if col%2 == 1{
                                 Cell(color: Color.black, content: cellContent)

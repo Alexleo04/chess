@@ -57,12 +57,12 @@ class Board: ObservableObject{
     
     func moveOrEat(_ from: Point, _ to: Point){
         // check if enemy in dest
-        let figureInToCell = figureConverterReciever(to)
-        let figureInFromCell = figureConverterReciever(from)
+        let figureInToCell = getFigureByPoint(to)
+        let figureInFromCell = getFigureByPoint(from)
         
         if figureInToCell == nil{
             if canMove(from, to, false){
-                figureSpawner(pos: to, fig: figureInFromCell!)
+                placeFigure(pos: to, fig: figureInFromCell!)
                 clearCell(from)
             }
         }
@@ -77,13 +77,13 @@ class Board: ObservableObject{
             return false
         }
         //2. From != nil? && To = nil?
-        let figureInFromCell = figureConverterReciever(from)
+        let figureInFromCell = getFigureByPoint(from)
         if figureInFromCell == nil {
             return false
         }
         
         // 2.1
-        let figureInToCell = figureConverterReciever(to)
+        let figureInToCell = getFigureByPoint(to)
         
         if isEat && (figureInToCell == nil || figureInToCell!.color == figureInFromCell!.color) {
             return false
@@ -94,20 +94,18 @@ class Board: ObservableObject{
         }
         
         //3. can figure move "from" --> "to" (по правилам)?
-        let constFig = figureConverterReciever(from)!
+        let constFig = getFigureByPoint(from)!
         if !constFig.canMove(from: from, to: to){
             return false
         }
         //4. Clear path?
         let дорожнаяКарта = constFig.myPath(from: from, to: to)
         for точка in дорожнаяКарта{
-            if figureConverterReciever(точка) != nil{
+            if getFigureByPoint(точка) != nil{
                 return false
             }
         }
-        
-        // move figure
-        
+
         return true
     }
 
@@ -119,17 +117,17 @@ class Board: ObservableObject{
         board[point.digit-1][point.letter.rawValue-1] = nil
     }
     
-    func figureSpawner(pos: Point, fig: Figure){
+    func placeFigure(pos: Point, fig: Figure){
         board[pos.digit-1][pos.letter.rawValue-1] = fig
     }
     
-    func figureConverterRecieverIcon(_ pos: Point) -> String{
-        let figure = figureConverterReciever(pos)
+    func getFigureIconByPoint(_ pos: Point) -> String{
+        let figure = getFigureByPoint(pos)
         
         return figure?.name ?? ""
     }
     
-    func figureConverterReciever(_ pos: Point) -> Figure?{
+    func getFigureByPoint(_ pos: Point) -> Figure?{
         return board[pos.digit-1][pos.letter.rawValue-1]
     }
     
