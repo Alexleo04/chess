@@ -17,7 +17,7 @@ var letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: 
 
 struct ContentView: View {
     @StateObject var game: Game = Game()
-    
+     
     var body: some View {
         VStack{
             
@@ -37,6 +37,8 @@ struct ContentView: View {
                             var testCol: Int = col
                             
                             let point = game.board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
+                            
+
                             
                             let cellContent = game.board.getFigureIconByPoint(point)
                         
@@ -81,10 +83,9 @@ struct Cell: View{
     var color: Color
     var content: String = ""
     var point: Point
-    //var gameLink: Game
     var body: some View{
         Button(letters[point.letter.rawValue]! + ":" + String(point.digit)) {
-            print(letters[point.letter.rawValue]! + ":" + String(point.digit))
+            print(">>> " + letters[point.letter.rawValue]! + ":" + String(point.digit))
         }
         .frame(width: 37.5, height: 37.5)
         .background(color)

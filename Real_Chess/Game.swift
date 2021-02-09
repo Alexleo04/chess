@@ -15,6 +15,5 @@ class Game: ObservableObject{
     init(){
         board = Board()
     }
-    
-    
+
 }
