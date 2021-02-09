@@ -13,11 +13,10 @@ import SwiftUI
 
 //                Cell(color: Color.black, content: board.figureConverterReciever(Point(letter: .a, digit: 8))!.name)
 
+var letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
 
 struct ContentView: View {
-    @StateObject var board: Board = Board()
-    
-    var letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
+    @StateObject var game: Game = Game()
     
     var body: some View {
         VStack{
@@ -37,14 +36,14 @@ struct ContentView: View {
                    
                             var testCol: Int = col
                             
-                            let point = board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
+                            let point = game.board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
                             
-                            let cellContent = board.getFigureIconByPoint(point)
+                            let cellContent = game.board.getFigureIconByPoint(point)
                         
                             if col%2 == 1{
-                                Cell(color: Color.white, content: cellContent)
+                                Cell(color: Color.white, content: cellContent, point: point)
                             }else{
-                                Cell(color: Color.black, content: cellContent)
+                                Cell(color: Color.black, content: cellContent, point: point)
                             }
                         }
                         HeaderCell(color: Color.white)
@@ -55,14 +54,14 @@ struct ContentView: View {
                         ForEach((1..<9)) { col in
                             var testCol: Int = col
                             
-                            let point = board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
+                            let point = game.board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
                             
-                            let cellContent = board.getFigureIconByPoint(point)
+                            let cellContent = game.board.getFigureIconByPoint(point)
                         
                             if col%2 == 1{
-                                Cell(color: Color.black, content: cellContent)
+                                Cell(color: Color.black, content: cellContent, point: point)
                             }else{
-                                Cell(color: Color.white, content: cellContent)
+                                Cell(color: Color.white, content: cellContent, point: point)
                             }
                         }
                         HeaderCell(color: Color.white)
@@ -71,19 +70,21 @@ struct ContentView: View {
             }
         }
         Button("moveOrEat"){
-            board.moveOrEat(Point(letter: .d, digit: 7), Point(letter: .d, digit: 5))
+            game.board.moveOrEat(Point(letter: .d, digit: 7), Point(letter: .d, digit: 5))
         }
     }
 }
 
 
-
 struct Cell: View{
+    // what is your coordinate
     var color: Color
     var content: String = ""
+    var point: Point
+    //var gameLink: Game
     var body: some View{
-        Button(content) {
-            print(type(of: self.body))
+        Button(letters[point.letter.rawValue]! + ":" + String(point.digit)) {
+            print(letters[point.letter.rawValue]! + ":" + String(point.digit))
         }
         .frame(width: 37.5, height: 37.5)
         .background(color)
