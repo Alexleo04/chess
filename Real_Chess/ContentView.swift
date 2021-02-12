@@ -32,20 +32,18 @@ struct ContentView: View {
             }
             
             ForEach((1..<9)) { row in
-                var testRow: Int = row
-                if row%2 == 1 {
+                var convertedRow: Int = 9-row
+                if convertedRow%2 == 1 {
                     HStack(spacing: 0){
-                        HeaderCell(color: Color.white, content: String(row))
+                        HeaderCell(color: Color.white, content: String(convertedRow))
                         ForEach((1..<9)) { col in
                    
                             var testCol: Int = col
                             
-                            let point = game.board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
+                            let point = game.board.helperCreatePoint(letterNum: testCol, digitNum: convertedRow)
                             
-
-                            
-                            let cellContent = game.board.getFigureIconByPoint(point)
-                        
+                            let cellContent: String = game.board.getFigureIconByPoint(point)
+                       
                             if col%2 == 1{
                                 Cell(color: Color.white, content: cellContent, point: point, funcHandler: clickHandler)
                             }else{
@@ -56,14 +54,14 @@ struct ContentView: View {
                     }
                 }else{
                     HStack(spacing: 0){
-                        HeaderCell(color: Color.white, content: String(row))
+                        HeaderCell(color: Color.white, content: String(convertedRow))
                         ForEach((1..<9)) { col in
                             var testCol: Int = col
                             
-                            let point = game.board.helperCreatePoint(letterNum: testCol, digitNum: testRow)
+                            let point = game.board.helperCreatePoint(letterNum: testCol, digitNum: convertedRow)
                             
-                            let cellContent = game.board.getFigureIconByPoint(point)
-                        
+                            let cellContent: String  = game.board.getFigureIconByPoint(point)
+                                                   
                             if col%2 == 1{
                                 Cell(color: Color.black, content: cellContent, point: point, funcHandler: clickHandler)
                             }else{
@@ -95,6 +93,7 @@ struct Cell: View{
         }
         .frame(width: 37.5, height: 37.5)
         .background(color)
+        .contentShape(Rectangle())
         .border(Color.black, width: 0.5)
     }
 }

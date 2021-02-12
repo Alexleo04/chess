@@ -17,18 +17,21 @@ class Game: ObservableObject{
     func moveProcessing(point: Point){
         print("moveProcessing: " + letters[point.letter.rawValue]! + ":" + String(point.digit))
         if xодCounter % 2 == 0{
-            print("Its white's turn. There are " + String(xодCounter) + "turns in total.")
+            print("Its white's turn. There are " + String(xодCounter) + " turns in total.")
             чейХод = .white
         }else{
-            print("Its black's turn. There are " + String(xодCounter) + "turns in total.")
+            print("Its black's turn. There are " + String(xодCounter) + " turns in total.")
             чейХод = .black
         }
-        if fromClickedCell != nil{
-            print("firstClickedCell: " + letters[fromClickedCell!.letter.rawValue]! + ":" + String(fromClickedCell!.digit))
-        }
         if fromClickedCell != nil {
-            board.moveOrEat(fromClickedCell!, point)
+            var result = board.moveOrEat(fromClickedCell!, point)
             fromClickedCell = nil
+            
+            if !result{
+                print("Turn cant be made")
+                return
+            }
+            
             xодCounter += 1
         }else{
             fromClickedCell = point

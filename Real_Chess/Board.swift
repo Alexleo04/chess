@@ -55,7 +55,7 @@ class Board: ObservableObject{
     }
 
     
-    func moveOrEat(_ from: Point, _ to: Point){
+    func moveOrEat(_ from: Point, _ to: Point) -> Bool{
         // check if enemy in dest
         let figureInToCell = getFigureByPoint(to)
         let figureInFromCell = getFigureByPoint(from)
@@ -64,12 +64,17 @@ class Board: ObservableObject{
             if canMove(from, to, false){
                 placeFigure(pos: to, fig: figureInFromCell!)
                 clearCell(from)
+                return true
             }
+            return false
+        }else{
+            // yes -> moveAndEat() - take enemy figure, move your figure
+            // no -> move()
+            return false
         }
         
-        // yes -> moveAndEat() - take enemy figure, move your figure
-        // no -> move()
-    }
+        return false
+     }
            
     func canMove(_ from: Point, _ to: Point, _ isEat: Bool) -> Bool{
         //1. Valiдность обеих точек
@@ -124,7 +129,7 @@ class Board: ObservableObject{
     func getFigureIconByPoint(_ pos: Point) -> String{
         let figure = getFigureByPoint(pos)
         
-        return figure?.name ?? ""
+        return figure?.name ?? " "
     }
     
     func getFigureByPoint(_ pos: Point) -> Figure?{
