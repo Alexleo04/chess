@@ -13,11 +13,15 @@ import SwiftUI
 
 //                Cell(color: Color.black, content: board.figureConverterReciever(Point(letter: .a, digit: 8))!.name)
 
-var letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
+let letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
 
 struct ContentView: View {
     @StateObject var game: Game = Game()
-     
+    
+    func clickHandler(point: Point){
+        game.moveProcessing(point: point)
+    }
+    
     var body: some View {
         VStack{
             
@@ -43,9 +47,9 @@ struct ContentView: View {
                             let cellContent = game.board.getFigureIconByPoint(point)
                         
                             if col%2 == 1{
-                                Cell(color: Color.white, content: cellContent, point: point)
+                                Cell(color: Color.white, content: cellContent, point: point, funcHandler: clickHandler)
                             }else{
-                                Cell(color: Color.black, content: cellContent, point: point)
+                                Cell(color: Color.black, content: cellContent, point: point, funcHandler: clickHandler)
                             }
                         }
                         HeaderCell(color: Color.white)
@@ -61,9 +65,9 @@ struct ContentView: View {
                             let cellContent = game.board.getFigureIconByPoint(point)
                         
                             if col%2 == 1{
-                                Cell(color: Color.black, content: cellContent, point: point)
+                                Cell(color: Color.black, content: cellContent, point: point, funcHandler: clickHandler)
                             }else{
-                                Cell(color: Color.white, content: cellContent, point: point)
+                                Cell(color: Color.white, content: cellContent, point: point, funcHandler: clickHandler)
                             }
                         }
                         HeaderCell(color: Color.white)
@@ -73,19 +77,21 @@ struct ContentView: View {
         }
         Button("moveOrEat"){
             game.board.moveOrEat(Point(letter: .d, digit: 7), Point(letter: .d, digit: 5))
+            game.couterAndRedrawer += 1
         }
     }
 }
 
-
+/*letters[point.letter.rawValue]! + ":" + String(point.digit) - cell coords*/
 struct Cell: View{
     // what is your coordinate
     var color: Color
     var content: String = ""
     var point: Point
+    var funcHandler: (Point) -> Void
     var body: some View{
-        Button(letters[point.letter.rawValue]! + ":" + String(point.digit)) {
-            print(">>> " + letters[point.letter.rawValue]! + ":" + String(point.digit))
+        Button(content) {
+            funcHandler(point)
         }
         .frame(width: 37.5, height: 37.5)
         .background(color)
