@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Game: ObservableObject{
+class GameController: ObservableObject{
     @Published var fromClickedCell: Point?
     @Published var board: Board = Board()
     @Published var couterAndRedrawer: Int = 0
