@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DD2211825CDD8F3008E1DE2 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD2211725CDD8F3008E1DE2 /* GameController.swift */; };
 		B4B772CF0AD0157A4FC42B4A /* Queen_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B7797686C496910C017A2C /* Queen_Test.swift */; };
 		F455194D25926B18001290DC /* Knight_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F455194C25926B18001290DC /* Knight_Test.swift */; };
 		F4D07319257AAD8A006A9ACB /* Real_ChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07318257AAD8A006A9ACB /* Real_ChessApp.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8DD2211725CDD8F3008E1DE2 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		B4B7797686C496910C017A2C /* Queen_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queen_Test.swift; sourceTree = "<group>"; };
 		F455194C25926B18001290DC /* Knight_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight_Test.swift; sourceTree = "<group>"; };
 		F4D07315257AAD8A006A9ACB /* Real_Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Real_Chess.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +131,7 @@
 				F4D07342257AB05C006A9ACB /* Knight.swift */,
 				F4D07345257AB079006A9ACB /* Tower.swift */,
 				F4D07348257AB09D006A9ACB /* Board.swift */,
+				8DD2211725CDD8F3008E1DE2 /* GameController.swift */,
 			);
 			path = Real_Chess;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				F4D07349257AB09D006A9ACB /* Board.swift in Sources */,
 				F4D07329257AAE46006A9ACB /* PlayerColor.swift in Sources */,
 				F4D07340257AB049006A9ACB /* Bishop.swift in Sources */,
+				8DD2211825CDD8F3008E1DE2 /* GameController.swift in Sources */,
 				F4D0732C257AAE7A006A9ACB /* Letter.swift in Sources */,
 				F4D0733A257AB017006A9ACB /* King.swift in Sources */,
 				F4D07343257AB05C006A9ACB /* Knight.swift in Sources */,

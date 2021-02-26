@@ -9,4 +9,7 @@ import Foundation
 struct Point: Equatable{
     var letter: Letter
     var digit: Int
+    func comparer(victim: Point) -> Bool{
+        return letter == victim.letter && digit == victim.digit
+    }
 }
