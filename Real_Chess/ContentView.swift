@@ -32,15 +32,16 @@ struct ContentView: View {
             }
             
             ForEach((1..<9)) { row in
+                // we need to count in reverse as board have 8 -> 1 numeration
                 var convertedRow: Int = 9-row
                 if convertedRow%2 == 1 {
                     HStack(spacing: 0){
                         HeaderCell(color: Color.white, content: String(convertedRow))
                         ForEach((1..<9)) { col in
                    
-                            var testCol: Int = col
+                            var column: Int = col
                             
-                            let point = gameController.board.helperCreatePoint(letterNum: testCol, digitNum: convertedRow)
+                            let point = gameController.board.helperCreatePoint(letterNum: column, digitNum: convertedRow)
                             
                             var comparisonRes: Bool = point == gameController.fromClickedCell
                             
@@ -57,10 +58,11 @@ struct ContentView: View {
                 }else{
                     HStack(spacing: 0){
                         HeaderCell(color: Color.white, content: String(convertedRow))
+                        // we need to count in reverse as board have 8 -> 1 numeration
                         ForEach((1..<9)) { col in
-                            var testCol: Int = col
+                            var column: Int = col
                             
-                            let point = gameController.board.helperCreatePoint(letterNum: testCol, digitNum: convertedRow)
+                            let point = gameController.board.helperCreatePoint(letterNum: column, digitNum: convertedRow)
                             
                             var comparisonRes: Bool = point == gameController.fromClickedCell
                             
