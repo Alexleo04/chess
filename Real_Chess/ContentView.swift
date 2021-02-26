@@ -26,8 +26,8 @@ struct ContentView: View {
         VStack{
             HStack(spacing: 0){
                 ForEach((1..<9)) { col in
-                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)
-                    HeaderCell(color: Color.white, content: visualAchiever?.name ?? "")
+                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col-1)
+                    HeaderCell(color: Color.black, content: visualAchiever?.name ?? "")
                 }
             }
             Spacer()
