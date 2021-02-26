@@ -19,12 +19,18 @@ struct ContentView: View {
     @StateObject var gameController: GameController = GameController()
     
     func clickHandler(point: Point){
-        gameController.moveProcessing(point: point)
+        gameController.moveSelector(point: point)
     }
     
     var body: some View {
         VStack{
-            
+            HStack(spacing: 0){
+                ForEach((1..<9)) { col in
+                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)
+                    HeaderCell(color: Color.white, content: visualAchiever?.name ?? "")
+                }
+            }
+            Spacer()
             HStack(spacing: 0){
                 ForEach((1..<9)) { col in
                     HeaderCell(color: Color.white, content: letters[col]!)
@@ -76,6 +82,12 @@ struct ContentView: View {
                         }
                         HeaderCell(color: Color.white)
                     }
+                }
+            }
+            Spacer()
+            HStack(spacing: 0){
+                ForEach((1..<9)) { col in
+                    HeaderCell(color: Color.white, content: letters[col]!)
                 }
             }
         }

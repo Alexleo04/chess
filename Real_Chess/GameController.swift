@@ -11,23 +11,23 @@ class GameController: ObservableObject{
     @Published var fromClickedCell: Point?
     @Published var board: Board = Board()
     @Published var couterAndRedrawer: Int = 0
-    var whoMoves: PlayerColor = .white
     var moveCounter: Int = 0
     
-    // add Player 1
-    // add Player 2
+    @Published var whiteGuy: Player = Player(PlayerColor.white);
+    @Published var blackGuy: Player = Player(PlayerColor.black);
     
-    func moveProcessing(point: Point){
-        print("moveProcessing: " + letters[point.letter.rawValue]! + ":" + String(point.digit))
+    func playerSelector() -> Player{
         if moveCounter % 2 == 0{
-            print("Its white's turn. There are " + String(moveCounter) + " turns in total.")
-            whoMoves = .white
-        }else{
-            print("Its black's turn. There are " + String(moveCounter) + " turns in total.")
-            whoMoves = .black
+            return whiteGuy;
         }
+        return blackGuy;
+    }
+    
+    func moveSelector(point: Point){
+        print("moveProcessing: " + letters[point.letter.rawValue]! + ":" + String(point.digit))
         if fromClickedCell != nil {
-            let result = board.moveOrEat(fromClickedCell!, point)
+            let player = playerSelector()
+            let result = board.moveOrEat(fromClickedCell!, point, player)
             fromClickedCell = nil
             
             if !result{
