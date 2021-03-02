@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Chess_qdt45-2.svg",
+      "filename" : "Chess_qlt45-2.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Chess_qdt45-1.svg",
+      "filename" : "Chess_qlt45-1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Chess_qdt45.svg",
+      "filename" : "Chess_qlt45.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

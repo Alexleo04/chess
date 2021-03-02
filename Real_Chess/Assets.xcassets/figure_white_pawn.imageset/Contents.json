@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Chess_pdt45-2.svg",
+      "filename" : "figure_pawn_white-2.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Chess_pdt45-1.svg",
+      "filename" : "figure_pawn_white-1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Chess_pdt45.svg",
+      "filename" : "figure_pawn_white.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }
