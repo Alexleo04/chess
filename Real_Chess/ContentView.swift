@@ -10,7 +10,8 @@
 //3.Error Text
 
 import SwiftUI
-
+let colorCellWhite: Color = Color.white
+let colorCellBlack: Color = Color.blue
 //                Cell(color: Color.black, content: board.figureConverterReciever(Point(letter: .a, digit: 8))!.name)
 
 let letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
@@ -54,9 +55,9 @@ struct ContentView: View {
                             let cellContent: String = gameController.board.getFigureIconByPoint(point)
                        
                             if col%2 == 1{
-                                Cell(color: Color.white, content: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
+                                Cell(color: colorCellWhite, theGlifer: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
                             }else{
-                                Cell(color: Color.black, content: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
+                                Cell(color: colorCellBlack, theGlifer: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
                             }
                         }
                         HeaderCell(color: Color.white)
@@ -75,9 +76,9 @@ struct ContentView: View {
                             let cellContent: String  = gameController.board.getFigureIconByPoint(point)
                                                    
                             if col%2 == 1{
-                                Cell(color: Color.black, content: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
+                                Cell(color: colorCellBlack, theGlifer: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
                             }else{
-                                Cell(color: Color.white, content: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
+                                Cell(color: colorCellWhite, theGlifer: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
                             }
                         }
                         HeaderCell(color: Color.white)
@@ -99,13 +100,13 @@ struct ContentView: View {
 struct Cell: View{
     // what is your coordinate
     var color: Color
-    var content: String = ""
+    var theGlifer: String = ""
     var point: Point
     var funcHandler: (Point) -> Void
     var isPresed: Bool
     var body: some View{
         Button(action: {funcHandler(point)}) {
-            Image("figure_pawn_white")
+            Image(theGlifer)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 37.5, height: 37.5)

@@ -140,7 +140,7 @@ class Board: ObservableObject{
     func getFigureIconByPoint(_ pos: Point) -> String{
         let figure = getFigureByPoint(pos)
         
-        return figure?.name ?? " "
+        return figure?.theGlifer ?? "empty_cell"
     }
     
     func getFigureByPoint(_ pos: Point) -> Figure?{

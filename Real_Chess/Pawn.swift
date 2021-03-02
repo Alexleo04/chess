@@ -8,7 +8,7 @@
 import Foundation
 class Pawn: Figure{
     init(_ color: PlayerColor){
-        super.init("🖱", color)
+        super.init("🖱", color, "pawn")
     }
 
     override func canMove(from: Point, to: Point) -> Bool{
