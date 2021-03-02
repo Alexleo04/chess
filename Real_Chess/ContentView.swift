@@ -104,8 +104,11 @@ struct Cell: View{
     var funcHandler: (Point) -> Void
     var isPresed: Bool
     var body: some View{
-        Button(content) {
-            funcHandler(point)
+        Button(action: {funcHandler(point)}) {
+            Image("figure_pawn_white")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 37.5, height: 37.5)
         }
         .frame(width: 37.5, height: 37.5)
         .background(isPresed ? Color.green : color)
