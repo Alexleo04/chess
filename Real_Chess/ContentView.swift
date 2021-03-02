@@ -25,8 +25,8 @@ struct ContentView: View {
     var body: some View {
         VStack{
             HStack(spacing: 0){
-                ForEach((1..<9)) { col in
-                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col-1)
+                ForEach((0..<8)) { col in
+                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)
                     HeaderCell(color: Color.black, content: visualAchiever?.name ?? "")
                 }
             }
@@ -86,8 +86,9 @@ struct ContentView: View {
             }
             Spacer()
             HStack(spacing: 0){
-                ForEach((1..<9)) { col in
-                    HeaderCell(color: Color.white, content: letters[col]!)
+                ForEach((0..<8)) { col in
+                    var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: col)
+                    HeaderCell(color: Color.white, content: visualAchiever?.name ?? "")
                 }
             }
         }

@@ -50,6 +50,8 @@ class Bishop_Test: XCTestCase {
             Point(letter: .f, digit: 5),
             Point(letter: .g, digit: 6)
         ], bishop.myPath(from: Point(letter: .c, digit: 2), to: Point(letter: .h, digit: 7)))
+        XCTAssertEqual([
+        ], bishop.myPath(from: Point(letter: .a, digit: 1), to: Point(letter: .b, digit: 2)))
     }
     override func tearDown() {
         super.tearDown()

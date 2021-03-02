@@ -18,7 +18,7 @@ class Board_Test: XCTestCase {
         var fromPoint = Point(letter: .d, digit: 1);
         var toPoint = Point(letter: .d, digit: 8);
         board.placeFigure(pos: fromPoint, fig: Queen(.white))
-        XCTAssertTrue(board.canMove(fromPoint, toPoint))
+        XCTAssertTrue(board.canMove(fromPoint, toPoint, false))
     }
     override func tearDown() {
         super.tearDown()
