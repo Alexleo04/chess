@@ -23,7 +23,8 @@ struct ContentView: View {
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
                     var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)//съедание черными
-                    HeaderCell(color: Color.white, content: "X")//отрисoвка
+                    let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                    Еaten(color: Color.white, content: cellGlyph)//отрисoвка
                 }
             }
             Spacer()
@@ -85,7 +86,9 @@ struct ContentView: View {
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
                     var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: col)
-                    HeaderCell(color: Color.white, content: "X")
+                    let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                    
+                    Еaten(color: Color.white, content: cellGlyph)
                 }
             }
         }
@@ -130,10 +133,16 @@ struct Еaten: View{
     var color: Color
     var content: String = ""
     var body: some View{
-        Text(content)
+        Button(action: {}) {
+            Image(content)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 37.5, height: 37.5)
+                .padding()
+        }
         .frame(width: 37.5, height: 37.5)
-        .background(color)
-        //.border(Color.black, width: 0.5)
+        .contentShape(Rectangle())
+        .border(Color.black, width: 0.5)
     }
 }
 
