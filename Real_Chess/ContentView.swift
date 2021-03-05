@@ -25,15 +25,17 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
+            //отображение съедания черными
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
-                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)
-                    HeaderCell(color: Color.black, content: visualAchiever?.name ?? "")
+                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)//съедание черными
+                    HeaderCell(color: Color.black, content: visualAchiever?.name ?? "")//отрисoвка
                 }
             }
             Spacer()
             HStack(spacing: 0){
                 ForEach((1..<9)) { col in
+                    //рисуем буквы
                     HeaderCell(color: Color.white, content: letters[col]!)
                 }
             }
@@ -119,6 +121,17 @@ struct Cell: View{
 }
 
 struct HeaderCell: View{
+    var color: Color
+    var content: String = ""
+    var body: some View{
+        Text(content)
+        .frame(width: 37.5, height: 37.5)
+        .background(color)
+        //.border(Color.black, width: 0.5)
+    }
+}
+
+struct Еaten: View{
     var color: Color
     var content: String = ""
     var body: some View{
