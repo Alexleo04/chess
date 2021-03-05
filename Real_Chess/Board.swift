@@ -55,12 +55,17 @@ class Board: ObservableObject{
     }
 
     
-    func moveOrEat(_ from: Point, _ to: Point) -> Bool{
+    func moveOrEat(_ from: Point, _ to: Point, _ thePlayer: Player) -> Bool{
         // check if enemy in dest
         let figureInToCell = getFigureByPoint(to)
         let figureInFromCell = getFigureByPoint(from)
         
+        if figureInFromCell?.color != thePlayer.color{
+            return false
+        }
+        
         if figureInToCell == nil{
+            //MOVE
             if canMove(from, to, false){
                 placeFigure(pos: to, fig: figureInFromCell!)
                 clearCell(from)
@@ -68,8 +73,14 @@ class Board: ObservableObject{
             }
             return false
         }else{
-            // yes -> moveAndEat() - take enemy figure, move your figure
-            // no -> move()
+            //EAT
+            if canMove(from, to, true){
+                thePlayer.archieve(eaten: getFigureByPoint(to)!)
+                clearCell(to)
+                placeFigure(pos: to, fig: figureInFromCell!)
+                clearCell(from)
+                return true
+            }
             return false
         }
         
@@ -129,7 +140,7 @@ class Board: ObservableObject{
     func getFigureIconByPoint(_ pos: Point) -> String{
         let figure = getFigureByPoint(pos)
         
-        return figure?.name ?? " "
+        return figure?.theGlifer ?? "empty_cell"
     }
     
     func getFigureByPoint(_ pos: Point) -> Figure?{

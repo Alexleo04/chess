@@ -8,7 +8,7 @@
 import Foundation
 class Tower: Figure{
     init(_ color: PlayerColor){
-        super.init("🏛", color)
+        super.init("🏛", color, "tower")
     }
 
     override func canMove(from: Point, to: Point) -> Bool {
@@ -22,11 +22,17 @@ class Tower: Figure{
         if from.letter == to.letter {
             if to.digit > from.digit {
                 var distance = to.digit - from.digit - 1
+                if distance == 0{
+                    return []
+                }
                 for i in 1...distance {
                     distancePro.append(Point(letter: from.letter, digit: from.digit + i))
                 }
             } else if from.digit > to.digit {
                 var distance = from.digit - to.digit - 1
+                if distance == 0{
+                    return []
+                }
                 for i in 1...distance {
                     distancePro.append(Point(letter: from.letter, digit: from.digit - i))
                 }
@@ -35,11 +41,17 @@ class Tower: Figure{
         if from.digit == to.digit {
             if to.letter.rawValue > from.letter.rawValue {
                 var distance = to.letter.rawValue - from.letter.rawValue - 1
+                if distance == 0{
+                    return []
+                }
                 for i in 1...distance {
                     distancePro.append(Point(letter: Letter(rawValue: from.letter.rawValue + i)!, digit: from.digit))
                 }
             } else if from.letter.rawValue > to.letter.rawValue {
                 var distance = from.letter.rawValue - to.letter.rawValue - 1
+                if distance == 0{
+                    return []
+                }
                 for i in 1...distance {
                     distancePro.append(Point(letter: Letter(rawValue: from.letter.rawValue - i)!, digit: from.digit))
                 }

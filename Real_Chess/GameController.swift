@@ -11,20 +11,23 @@ class GameController: ObservableObject{
     @Published var fromClickedCell: Point?
     @Published var board: Board = Board()
     @Published var couterAndRedrawer: Int = 0
-    var чейХод: PlayerColor = .white
-    var xодCounter: Int = 0
+    var moveCounter: Int = 0
     
-    func moveProcessing(point: Point){
-        print("moveProcessing: " + letters[point.letter.rawValue]! + ":" + String(point.digit))
-        if xодCounter % 2 == 0{
-            print("Its white's turn. There are " + String(xодCounter) + " turns in total.")
-            чейХод = .white
-        }else{
-            print("Its black's turn. There are " + String(xодCounter) + " turns in total.")
-            чейХод = .black
+    @Published var whiteGuy: Player = Player(PlayerColor.white);
+    @Published var blackGuy: Player = Player(PlayerColor.black);
+    
+    func playerSelector() -> Player{
+        if moveCounter % 2 == 0{
+            return whiteGuy;
         }
+        return blackGuy;
+    }
+    
+    func moveSelector(point: Point){
+        print("moveProcessing: " + letters[point.letter.rawValue]! + ":" + String(point.digit))
         if fromClickedCell != nil {
-            var result = board.moveOrEat(fromClickedCell!, point)
+            let player = playerSelector()
+            let result = board.moveOrEat(fromClickedCell!, point, player)
             fromClickedCell = nil
             
             if !result{
@@ -32,7 +35,7 @@ class GameController: ObservableObject{
                 return
             }
             
-            xодCounter += 1
+            moveCounter += 1
         }else{
             fromClickedCell = point
         }
