@@ -40,21 +40,6 @@ class Board: ObservableObject{
         }
     }
     
-    func printBoard(){
-        for i in board{
-            var line: String = ""
-            for j in i{
-                if j != nil{
-                    line += j!.name
-                }else{
-                    line += "🎛"
-                }
-            }
-            print(line)
-        }
-    }
-
-    
     func moveOrEat(_ from: Point, _ to: Point, _ thePlayer: Player) -> Bool{
         // check if enemy in dest
         let figureInToCell = getFigureByPoint(to)
@@ -89,7 +74,7 @@ class Board: ObservableObject{
            
     func canMove(_ from: Point, _ to: Point, _ isEat: Bool) -> Bool{
         //1. Valiдность обеих точек
-        if !isValid(from) || !isValid(to){
+        if !from.isValid() || !to.isValid(){
             return false
         }
         //2. From != nil? && To = nil?
@@ -125,10 +110,6 @@ class Board: ObservableObject{
         return true
     }
 
-    func isValid(_ random: Point) -> Bool{
-        return random.digit <= 8 && random.digit > 0
-    }
-
     func clearCell(_ point: Point){
         board[point.digit-1][point.letter.rawValue-1] = nil
     }
@@ -137,19 +118,7 @@ class Board: ObservableObject{
         board[pos.digit-1][pos.letter.rawValue-1] = fig
     }
     
-    func getFigureIconByPoint(_ pos: Point) -> String{
-        let figure = getFigureByPoint(pos)
-        
-        return figure?.theGlifer ?? "empty_cell"
-    }
-    
     func getFigureByPoint(_ pos: Point) -> Figure?{
         return board[pos.digit-1][pos.letter.rawValue-1]
     }
-    
-    // add check letter and digit before creating
-    func helperCreatePoint(letterNum: Int, digitNum: Int) -> Point{
-        return Point(letter: Letter(rawValue: letterNum) ?? .a, digit: digitNum)
-    }
-    
 }

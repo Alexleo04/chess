@@ -4,15 +4,9 @@
 //
 //  Created by Aleksey Leonov on 04/12/2020.
 //
-
-//1.Player Turn
-//2.Eaten Figures
-//3.Error Text
-
 import SwiftUI
 let colorCellWhite: Color = Color.white
 let colorCellBlack: Color = Color.blue
-//                Cell(color: Color.black, content: board.figureConverterReciever(Point(letter: .a, digit: 8))!.name)
 
 let letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
 
@@ -29,7 +23,7 @@ struct ContentView: View {
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
                     var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)//съедание черными
-                    HeaderCell(color: Color.black, content: visualAchiever?.name ?? "")//отрисoвка
+                    HeaderCell(color: Color.white, content: "X")//отрисoвка
                 }
             }
             Spacer()
@@ -50,11 +44,11 @@ struct ContentView: View {
                    
                             var column: Int = col
                             
-                            let point = gameController.board.helperCreatePoint(letterNum: column, digitNum: convertedRow)
+                            let point = Helper.createPoint(letterNum: column, digitNum: convertedRow)
                             
                             var comparisonRes: Bool = point == gameController.fromClickedCell
                             
-                            let cellContent: String = gameController.board.getFigureIconByPoint(point)
+                            let cellContent: String = Helper.getGlyphNameFromFigure(gameController.board.getFigureByPoint(point))
                        
                             if col%2 == 1{
                                 Cell(color: colorCellWhite, theGlifer: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
@@ -71,11 +65,11 @@ struct ContentView: View {
                         ForEach((1..<9)) { col in
                             var column: Int = col
                             
-                            let point = gameController.board.helperCreatePoint(letterNum: column, digitNum: convertedRow)
+                            let point = Helper.createPoint(letterNum: column, digitNum: convertedRow)
                             
                             var comparisonRes: Bool = point == gameController.fromClickedCell
                             
-                            let cellContent: String  = gameController.board.getFigureIconByPoint(point)
+                            let cellContent: String = Helper.getGlyphNameFromFigure(gameController.board.getFigureByPoint(point))
                                                    
                             if col%2 == 1{
                                 Cell(color: colorCellBlack, theGlifer: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
@@ -91,7 +85,7 @@ struct ContentView: View {
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
                     var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: col)
-                    HeaderCell(color: Color.white, content: visualAchiever?.name ?? "")
+                    HeaderCell(color: Color.white, content: "X")
                 }
             }
         }
@@ -112,6 +106,7 @@ struct Cell: View{
                 .resizable()
                 .scaledToFit()
                 .frame(width: 37.5, height: 37.5)
+                .padding()
         }
         .frame(width: 37.5, height: 37.5)
         .background(isPresed ? Color.green : color)
