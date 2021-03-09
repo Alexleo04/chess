@@ -8,7 +8,7 @@
 import Foundation
 class King: Figure{
     init(_ color: PlayerColor){
-        super.init("🤴🏿", color, "king")
+        super.init(color, "king")
     }
 
     override func canMove(from: Point, to: Point) -> Bool{

@@ -4,15 +4,9 @@
 //
 //  Created by Aleksey Leonov on 04/12/2020.
 //
-
-//1.Player Turn
-//2.Eaten Figures
-//3.Error Text
-
 import SwiftUI
 let colorCellWhite: Color = Color.white
 let colorCellBlack: Color = Color.blue
-//                Cell(color: Color.black, content: board.figureConverterReciever(Point(letter: .a, digit: 8))!.name)
 
 let letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
 
@@ -25,15 +19,18 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
+            //отображение съедания черными
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
-                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)
-                    HeaderCell(color: Color.black, content: visualAchiever?.name ?? "")
+                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)//съедание черными
+                    let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                    Еaten(color: Color.white, content: cellGlyph)//отрисoвка
                 }
             }
             Spacer()
             HStack(spacing: 0){
                 ForEach((1..<9)) { col in
+                    //рисуем буквы
                     HeaderCell(color: Color.white, content: letters[col]!)
                 }
             }
@@ -48,11 +45,11 @@ struct ContentView: View {
                    
                             var column: Int = col
                             
-                            let point = gameController.board.helperCreatePoint(letterNum: column, digitNum: convertedRow)
+                            let point = Helper.createPoint(letterNum: column, digitNum: convertedRow)
                             
                             var comparisonRes: Bool = point == gameController.fromClickedCell
                             
-                            let cellContent: String = gameController.board.getFigureIconByPoint(point)
+                            let cellContent: String = Helper.getGlyphNameFromFigure(gameController.board.getFigureByPoint(point))
                        
                             if col%2 == 1{
                                 Cell(color: colorCellWhite, theGlifer: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
@@ -69,11 +66,11 @@ struct ContentView: View {
                         ForEach((1..<9)) { col in
                             var column: Int = col
                             
-                            let point = gameController.board.helperCreatePoint(letterNum: column, digitNum: convertedRow)
+                            let point = Helper.createPoint(letterNum: column, digitNum: convertedRow)
                             
                             var comparisonRes: Bool = point == gameController.fromClickedCell
                             
-                            let cellContent: String  = gameController.board.getFigureIconByPoint(point)
+                            let cellContent: String = Helper.getGlyphNameFromFigure(gameController.board.getFigureByPoint(point))
                                                    
                             if col%2 == 1{
                                 Cell(color: colorCellBlack, theGlifer: cellContent, point: point, funcHandler: clickHandler, isPresed: comparisonRes)
@@ -89,7 +86,9 @@ struct ContentView: View {
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
                     var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: col)
-                    HeaderCell(color: Color.white, content: visualAchiever?.name ?? "")
+                    let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                    
+                    Еaten(color: Color.white, content: cellGlyph)
                 }
             }
         }
@@ -110,6 +109,7 @@ struct Cell: View{
                 .resizable()
                 .scaledToFit()
                 .frame(width: 37.5, height: 37.5)
+                .padding()
         }
         .frame(width: 37.5, height: 37.5)
         .background(isPresed ? Color.green : color)
@@ -126,6 +126,23 @@ struct HeaderCell: View{
         .frame(width: 37.5, height: 37.5)
         .background(color)
         //.border(Color.black, width: 0.5)
+    }
+}
+
+struct Еaten: View{
+    var color: Color
+    var content: String = ""
+    var body: some View{
+        Button(action: {}) {
+            Image(content)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 37.5, height: 37.5)
+                .padding()
+        }
+        .frame(width: 37.5, height: 37.5)
+        .contentShape(Rectangle())
+        .border(Color.black, width: 0.5)
     }
 }
 
