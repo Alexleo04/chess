@@ -30,9 +30,27 @@ struct ContentView: View {
             Spacer()
             //ресуем чей ход
             if gameController.playerSelector().color == PlayerColor.black{
-                Text("Black's turn")
+                HStack{
+                    Spacer()
+                    Text("Black's")
+                        .foregroundColor(Color.white)
+                        .padding(5)
+                        .border(Color.black, width: 0.5)
+                        .background(Color.black)
+                    Text(" turn")
+                    Spacer()
+                }
             }else{
-                Text("White's turn")
+                HStack{
+                    Spacer()
+                    Text("White's")
+                        .foregroundColor(Color.black)
+                        .padding(5)
+                        .border(Color.black, width: 0.5)
+                        .background(Color.white)
+                    Text(" turn")
+                    Spacer()
+                }
             }
             Spacer()
             HStack(spacing: 0){
