@@ -28,13 +28,19 @@ struct ContentView: View {
                 }
             }
             Spacer()
+            //ресуем чей ход
+            if gameController.playerSelector().color == PlayerColor.black{
+                Text("Black's turn")
+            }else{
+                Text("White's turn")
+            }
+            Spacer()
             HStack(spacing: 0){
                 ForEach((1..<9)) { col in
                     //рисуем буквы
                     HeaderCell(color: Color.white, content: letters[col]!)
                 }
             }
-            
             ForEach((1..<9)) { row in
                 // we need to count in reverse as board have 8 -> 1 numeration
                 var convertedRow: Int = 9-row
