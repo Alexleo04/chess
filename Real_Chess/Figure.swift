@@ -21,6 +21,9 @@ class Figure{
     func canMove(from: Point, to: Point) -> Bool{
         return false
     }
+    func canEat(from: Point, to: Point) -> Bool{
+        return canMove(from: from, to: to)
+    }
     func myPath(from: Point, to: Point) -> [Point]{
         return []
     }
