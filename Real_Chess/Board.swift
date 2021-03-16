@@ -87,24 +87,28 @@ class Board: ObservableObject{
             return false
         }
         
-        // 2.1
+        // 2.1 get fig from "to"
         let figureInToCell = getFigureByPoint(to)
-        
+        // if iseat = true and our fig or empty "to"
         if isEat && (figureInToCell == nil || figureInToCell!.color == figureInFromCell!.color) {
             return false
         }
-        
+        // if iseat = false and "to" != nil
         if !isEat && (figureInToCell != nil) {
             return false
         }
         
         //3. can figure move "from" --> "to" (по правилам)?
-        let constFig = getFigureByPoint(from)!
-        if !constFig.canMove(from: from, to: to){
+        let movableFig = getFigureByPoint(from)!
+        if isEat{
+            if !movableFig.canEat(from: from, to: to){
+                return false
+            }
+        }else if !movableFig.canMove(from: from, to: to){
             return false
         }
         //4. Clear path?
-        let дорожнаяКарта = constFig.myPath(from: from, to: to)
+        let дорожнаяКарта = movableFig.myPath(from: from, to: to)
         for точка in дорожнаяКарта{
             if getFigureByPoint(точка) != nil{
                 return false

@@ -8,7 +8,7 @@
 @testable import Real_Chess
 import XCTest
 
-class Pawn_Test: XCTestCase {
+class PawnWhite_Test: XCTestCase {
     var pawn: Pawn!
     override func setUp() {
         super.setUp()
@@ -23,6 +23,22 @@ class Pawn_Test: XCTestCase {
         XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 2), to: Point(letter: .a, digit: 5)))
         XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 2), to: Point(letter: .b, digit: 4)))
         XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 2), to: Point(letter: .a, digit: 1)))
+        XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 7), to: Point(letter: .a, digit: 5)))
+        XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 6), to: Point(letter: .a, digit: 5)))
+        XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 5), to: Point(letter: .a, digit: 4)))
+        XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 4), to: Point(letter: .a, digit: 3)))
+    }
+    func testCanEatProperly(){
+        XCTAssertTrue(pawn.canEat(from: Point(letter: .b, digit: 2), to: Point(letter: .c, digit: 3)))
+        XCTAssertTrue(pawn.canEat(from: Point(letter: .b, digit: 2), to: Point(letter: .a, digit: 3)))
+    }
+    func testCantEatProperly(){
+        XCTAssertFalse(pawn.canEat(from: Point(letter: .b, digit: 2), to: Point(letter: .b, digit: 3)))
+        XCTAssertFalse(pawn.canEat(from: Point(letter: .b, digit: 2), to: Point(letter: .b, digit: 4)))
+        XCTAssertFalse(pawn.canEat(from: Point(letter: .b, digit: 2), to: Point(letter: .b, digit: 3)))
+        XCTAssertFalse(pawn.canEat(from: Point(letter: .b, digit: 2), to: Point(letter: .a, digit: 1)))
+        XCTAssertFalse(pawn.canEat(from: Point(letter: .b, digit: 2), to: Point(letter: .b, digit: 1)))
+        XCTAssertFalse(pawn.canEat(from: Point(letter: .b, digit: 2), to: Point(letter: .c, digit: 1)))
     }
     func testMyPath(){
         XCTAssertEqual(pawn.myPath(from: Point(letter: .e, digit: 2), to: Point(letter: .e, digit: 3)), [])
