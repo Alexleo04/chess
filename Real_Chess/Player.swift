@@ -10,6 +10,17 @@ import Foundation
 class Player{
     var color: PlayerColor;
     var warehouse: [Figure]
+    var score: Int = 0
+    func warehouseWorth() -> Int {
+        var tempWeight = 0
+        if warehouse.count == 0{
+            return 0
+        }
+        for i in 0...warehouse.count-1{
+            tempWeight += warehouse[i].weight
+        }
+        return tempWeight
+    }
     func archieve(eaten: Figure){
         warehouse.append(eaten)
     }

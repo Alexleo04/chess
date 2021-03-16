@@ -100,6 +100,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F425E9222601389E00B0431B /* figures */ = {
+			isa = PBXGroup;
+			children = (
+				F4D0732E257AAF21006A9ACB /* Pawn.swift */,
+				F4D0733F257AB049006A9ACB /* Bishop.swift */,
+				F4D07342257AB05C006A9ACB /* Knight.swift */,
+				F4D07339257AB017006A9ACB /* King.swift */,
+				F4D0733C257AB031006A9ACB /* Queen.swift */,
+				F4D07345257AB079006A9ACB /* Tower.swift */,
+			);
+			path = figures;
+			sourceTree = "<group>";
+		};
 		F4D0730C257AAD8A006A9ACB = {
 			isa = PBXGroup;
 			children = (
@@ -129,17 +142,12 @@
 				F4D07335257AAFB3006A9ACB /* Figure.swift */,
 				F4D07328257AAE46006A9ACB /* PlayerColor.swift */,
 				F4D0732B257AAE7A006A9ACB /* Letter.swift */,
+				F425E9222601389E00B0431B /* figures */,
 				F4D07332257AAF70006A9ACB /* Point.swift */,
-				F4D0732E257AAF21006A9ACB /* Pawn.swift */,
-				F4D07339257AB017006A9ACB /* King.swift */,
-				F4D0733C257AB031006A9ACB /* Queen.swift */,
-				F4D0733F257AB049006A9ACB /* Bishop.swift */,
-				F4D07342257AB05C006A9ACB /* Knight.swift */,
-				F4D07345257AB079006A9ACB /* Tower.swift */,
 				F4D07348257AB09D006A9ACB /* Board.swift */,
 				F47D887825E9716F00B81DE2 /* Player.swift */,
-				8DD2211725CDD8F3008E1DE2 /* GameController.swift */,
 				8D77A27325F2ABCB002D2922 /* Helper.swift */,
+				8DD2211725CDD8F3008E1DE2 /* GameController.swift */,
 			);
 			path = Real_Chess;
 			sourceTree = "<group>";

@@ -20,11 +20,23 @@ struct ContentView: View {
     var body: some View {
         VStack{
             //отображение съедания черными
+                
             HStack(spacing: 0){
-                ForEach((0..<8)) { col in
-                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)//съедание черными
+                ForEach((0..<8)) { idx in
+                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: idx)//съедание черными
                     let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
                     Еaten(color: Color.white, content: cellGlyph)//отрисoвка
+                }
+            }
+                
+            if gameController.blackGuy.warehouse.count > 8{
+                
+                HStack(spacing: 0){
+                    ForEach((8..<16)) { idx in
+                        var visualAchiever = gameController.blackGuy.figureOrNothin(idx: idx)//съедание черными
+                        let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                        Еaten(color: Color.white, content: cellGlyph)//отрисoвка
+                    }
                 }
             }
             Spacer()
@@ -107,6 +119,16 @@ struct ContentView: View {
                 }
             }
             Spacer()
+            if gameController.whiteGuy.warehouse.count > 8{
+                
+                HStack(spacing: 0){
+                    ForEach((8..<16)) { idx in
+                        var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: idx)//съедание черными
+                        let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                        Еaten(color: Color.white, content: cellGlyph)//отрисoвка
+                    }
+                }
+            }
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
                     var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: col)
@@ -175,3 +197,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
