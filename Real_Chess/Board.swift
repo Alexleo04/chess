@@ -9,6 +9,10 @@ import Foundation
 class Board: ObservableObject{
     @Published private var board: [[Figure?]] = Array(repeating: [nil,nil,nil,nil,nil,nil,nil,nil], count: 8)
     
+    func getBoard() -> [[Figure?]]{
+        return board
+    }
+    
     init(){
         fillBoard()
     }

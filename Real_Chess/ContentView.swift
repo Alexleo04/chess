@@ -28,13 +28,37 @@ struct ContentView: View {
                 }
             }
             Spacer()
+            //ресуем чей ход
+            if gameController.playerSelector().color == PlayerColor.black{
+                HStack{
+                    Spacer()
+                    Text("Black's")
+                        .foregroundColor(Color.white)
+                        .padding(5)
+                        .border(Color.black, width: 0.5)
+                        .background(Color.black)
+                    Text(" turn")
+                    Spacer()
+                }
+            }else{
+                HStack{
+                    Spacer()
+                    Text("White's")
+                        .foregroundColor(Color.black)
+                        .padding(5)
+                        .border(Color.black, width: 0.5)
+                        .background(Color.white)
+                    Text(" turn")
+                    Spacer()
+                }
+            }
+            Spacer()
             HStack(spacing: 0){
                 ForEach((1..<9)) { col in
                     //рисуем буквы
                     HeaderCell(color: Color.white, content: letters[col]!)
                 }
             }
-            
             ForEach((1..<9)) { row in
                 // we need to count in reverse as board have 8 -> 1 numeration
                 var convertedRow: Int = 9-row
