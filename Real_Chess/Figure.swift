@@ -11,6 +11,7 @@ class Figure{
     var theGlifer: String
     var color: PlayerColor
     var weight: Int
+    var wasMoved: Bool = false
     init(_ color: PlayerColor, _ theGlifer: String, _ weight: Int) {
         self.color = color
         self.weight = weight

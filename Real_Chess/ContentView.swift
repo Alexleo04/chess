@@ -39,17 +39,35 @@ struct ContentView: View {
                     }
                 }
             }
+            
             Spacer()
             //ресуем чей ход
             if gameController.playerSelector().color == PlayerColor.black{
+                
                 HStack{
                     Spacer()
+                    
                     Text("Black's")
                         .foregroundColor(Color.white)
                         .padding(5)
                         .border(Color.black, width: 0.5)
                         .background(Color.black)
                     Text(" turn")
+                    Spacer()
+                }
+                Spacer()
+                HStack{
+                    Spacer()
+                    VStack{
+                        Text("White Score:")
+                        Text(String(gameController.whiteGuy.score))
+                    }
+                    Spacer()
+                    Spacer()
+                    VStack{
+                        Text("Black Score:")
+                        Text(String(gameController.blackGuy.score))
+                    }
                     Spacer()
                 }
             }else{
@@ -61,6 +79,21 @@ struct ContentView: View {
                         .border(Color.black, width: 0.5)
                         .background(Color.white)
                     Text(" turn")
+                    Spacer()
+                }
+                Spacer()
+                HStack{
+                    Spacer()
+                    VStack{
+                        Text("White Score:")
+                        Text(String(gameController.whiteGuy.score))
+                    }
+                    Spacer()
+                    Spacer()
+                    VStack{
+                        Text("Black Score:")
+                        Text(String(gameController.blackGuy.score))
+                    }
                     Spacer()
                 }
             }
@@ -118,6 +151,14 @@ struct ContentView: View {
                     }
                 }
             }
+//            Spacer()
+//            //Счет
+//            HStack(spacing: 0){
+//                Text("Score:")
+//                Text("00000")
+//            }
+            
+            
             Spacer()
             if gameController.whiteGuy.warehouse.count > 8{
                 

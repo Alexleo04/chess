@@ -21,8 +21,8 @@ class Board: ObservableObject{
         board[0][0] = Tower(.white)
         board[0][1] = Knight(.white)
         board[0][2] = Bishop(.white)
-        board[0][3] = King(.white)
-        board[0][4] = Queen(.white)
+        board[0][3] = Queen(.white)
+        board[0][4] = King(.white)
         board[0][5] = Bishop(.white)
         board[0][6] = Knight(.white)
         board[0][7] = Tower(.white)
@@ -30,8 +30,8 @@ class Board: ObservableObject{
         board[7][0] = Tower(.black)
         board[7][1] = Knight(.black)
         board[7][2] = Bishop(.black)
-        board[7][3] = King(.black)
-        board[7][4] = Queen(.black)
+        board[7][3] = Queen(.black)
+        board[7][4] = King(.black)
         board[7][5] = Bishop(.black)
         board[7][6] = Knight(.black)
         board[7][7] = Tower(.black)
@@ -56,6 +56,7 @@ class Board: ObservableObject{
         if figureInToCell == nil{
             //MOVE
             if canMove(from, to, false){
+                figureInFromCell!.wasMoved = true
                 placeFigure(pos: to, fig: figureInFromCell!)
                 clearCell(from)
                 return true
@@ -75,13 +76,35 @@ class Board: ObservableObject{
         
         return false
      }
-           
+    
+    func castling(_ kingPoint: Point, _ towerPoint: Point) -> Bool{
+        //1.wasMoved?
+        if !kingPoint.isValid() || !towerPoint.isValid(){
+            return false
+        }
+        let kingFig = getFigureByPoint(kingPoint)
+        if kingFig == nil {
+            return false
+        }
+        let towerFig = getFigureByPoint(towerPoint)
+        if towerFig == nil {
+            return false
+        }
+        if kingFig?.wasMoved || towerFig?.wasMoved{
+            return false
+        }
+        //2.Узнать тип ракировки
+        
+        //3.Свободен путь?
+        //4.Ракируем
+    }
+    
     func canMove(_ from: Point, _ to: Point, _ isEat: Bool) -> Bool{
         //1. Valiдность обеих точек
         if !from.isValid() || !to.isValid(){
             return false
         }
-        //2. From != nil? && To = nil?
+        //2. From != nil?
         let figureInFromCell = getFigureByPoint(from)
         if figureInFromCell == nil {
             return false
