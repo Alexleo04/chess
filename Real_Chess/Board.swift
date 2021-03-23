@@ -52,7 +52,11 @@ class Board: ObservableObject{
         if figureInFromCell?.color != thePlayer.color{
             return false
         }
-        
+        if figureInFromCell! is King {
+            if castling(from, to){
+                return true
+            }
+        }
         if figureInToCell == nil{
             //MOVE
             if canMove(from, to, false){
@@ -77,26 +81,48 @@ class Board: ObservableObject{
         return false
      }
     
-    func castling(_ kingPoint: Point, _ towerPoint: Point) -> Bool{
+    func castling(_ kingPoint: Point, _ targetPoint: Point) -> Bool{
+        func castlingKind(_ towerCoordStart: Point, _ kingCoordStart: Point, _ towerCoordEnd: Point, _ kingCoordEnd: Point) -> Bool{
+            let towerFig = getFigureByPoint(towerCoordStart)
+            if towerFig == nil && towerFig!.wasMoved{
+                return false
+            }
+            if !yourPathVerifier(towerFig!.myPath(from: kingCoordStart, to: towerCoordStart)){
+                return false
+            }
+            placeFigure(pos: kingCoordEnd, fig: kingFig!)
+            placeFigure(pos: towerCoordEnd, fig: towerFig!)
+            clearCell(kingCoordStart)
+            clearCell(towerCoordStart)
+            return true
+        }
         //1.wasMoved?
-        if !kingPoint.isValid() || !towerPoint.isValid(){
+        if !kingPoint.isValid() || !targetPoint.isValid(){
             return false
         }
         let kingFig = getFigureByPoint(kingPoint)
         if kingFig == nil {
             return false
         }
-        let towerFig = getFigureByPoint(towerPoint)
-        if towerFig == nil {
-            return false
-        }
-        if kingFig?.wasMoved || towerFig?.wasMoved{
+        if kingFig!.wasMoved{
             return false
         }
         //2.Узнать тип ракировки
-        
+        if targetPoint == Point(letter: .c, digit: 1){
+            castlingKind(Point(letter: .a, digit: 1), Point(letter: .e, digit: 1), Point(letter: .d, digit: 1), Point(letter: .c, digit: 1))
+        }
+        if targetPoint == Point(letter: .g, digit: 1){
+            castlingKind(Point(letter: .h, digit: 1), Point(letter: .e, digit: 1), Point(letter: .f, digit: 1), Point(letter: .g, digit: 1))
+        }
+        if targetPoint == Point(letter: .c, digit: 8){
+            castlingKind(Point(letter: .a, digit: 8), Point(letter: .e, digit: 8), Point(letter: .d, digit: 8), Point(letter: .c, digit: 8))
+        }
+        if targetPoint == Point(letter: .g, digit: 8){
+            castlingKind(Point(letter: .h, digit: 8), Point(letter: .e, digit: 8), Point(letter: .f, digit: 8), Point(letter: .g, digit: 8))
+        }
         //3.Свободен путь?
         //4.Ракируем
+        return false
     }
     
     func canMove(_ from: Point, _ to: Point, _ isEat: Bool) -> Bool{
@@ -132,15 +158,22 @@ class Board: ObservableObject{
         }
         //4. Clear path?
         let дорожнаяКарта = movableFig.myPath(from: from, to: to)
+        if !yourPathVerifier(дорожнаяКарта){
+            return false
+        }
+
+        return true
+    }
+    
+    func yourPathVerifier(_ дорожнаяКарта: [Point]) -> Bool{
         for точка in дорожнаяКарта{
             if getFigureByPoint(точка) != nil{
                 return false
             }
         }
-
         return true
     }
-
+    
     func clearCell(_ point: Point){
         board[point.digit-1][point.letter.rawValue-1] = nil
     }
