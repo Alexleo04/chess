@@ -23,11 +23,17 @@ class GameController: ObservableObject{
         return blackGuy;
     }
     
-    func moveSelector(point: Point){
+    func turnProcesin(point: Point){
         print("moveProcessing: " + letters[point.letter.rawValue]! + ":" + String(point.digit))
         if fromClickedCell != nil {
             let player = playerSelector()
             let result = board.moveOrEat(fromClickedCell!, point, player)
+            let whiteScore = whiteGuy.warehouseWorth()
+            let blackScore = blackGuy.warehouseWorth()
+            whiteGuy.score = whiteScore - blackScore
+            blackGuy.score = blackScore - whiteScore
+            print("white: " + String(whiteGuy.score))
+            print("black: " + String(blackGuy.score))
             fromClickedCell = nil
             
             if !result{
@@ -40,5 +46,24 @@ class GameController: ObservableObject{
             fromClickedCell = point
         }
         couterAndRedrawer += 1
+    }
+    init(){
+//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
+//
+//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
     }
 }

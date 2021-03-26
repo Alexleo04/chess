@@ -10,8 +10,11 @@ import Foundation
 class Figure{
     var theGlifer: String
     var color: PlayerColor
-    init(_ color: PlayerColor, _ theGlifer: String) {
+    var weight: Int
+    var wasMoved: Bool = false
+    init(_ color: PlayerColor, _ theGlifer: String, _ weight: Int) {
         self.color = color
+        self.weight = weight
         if color == PlayerColor.white{
             self.theGlifer = "figure_white_" + theGlifer
         }else{

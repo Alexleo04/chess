@@ -14,30 +14,60 @@ struct ContentView: View {
     @StateObject var gameController: GameController = GameController()
     
     func clickHandler(point: Point){
-        gameController.moveSelector(point: point)
+        gameController.turnProcesin(point: point)
     }
     
     var body: some View {
         VStack{
             //отображение съедания черными
+                
             HStack(spacing: 0){
-                ForEach((0..<8)) { col in
-                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: col)//съедание черными
+                ForEach((0..<8)) { idx in
+                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: idx)//съедание черными
                     let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
                     Еaten(color: Color.white, content: cellGlyph)//отрисoвка
                 }
             }
+                
+            if gameController.blackGuy.warehouse.count > 8{
+                
+                HStack(spacing: 0){
+                    ForEach((8..<16)) { idx in
+                        var visualAchiever = gameController.blackGuy.figureOrNothin(idx: idx)//съедание черными
+                        let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                        Еaten(color: Color.white, content: cellGlyph)//отрисoвка
+                    }
+                }
+            }
+            
             Spacer()
             //ресуем чей ход
             if gameController.playerSelector().color == PlayerColor.black{
+                
                 HStack{
                     Spacer()
+                    
                     Text("Black's")
                         .foregroundColor(Color.white)
                         .padding(5)
                         .border(Color.black, width: 0.5)
                         .background(Color.black)
                     Text(" turn")
+                    Spacer()
+                }
+                Spacer()
+                HStack{
+                    Spacer()
+                    VStack{
+                        Text("White Score:")
+                        Text(String(gameController.whiteGuy.score))
+                    }
+                    Spacer()
+                    Spacer()
+                    VStack{
+                        Text("Black Score:")
+                        Text(String(gameController.blackGuy.score))
+                    }
                     Spacer()
                 }
             }else{
@@ -49,6 +79,21 @@ struct ContentView: View {
                         .border(Color.black, width: 0.5)
                         .background(Color.white)
                     Text(" turn")
+                    Spacer()
+                }
+                Spacer()
+                HStack{
+                    Spacer()
+                    VStack{
+                        Text("White Score:")
+                        Text(String(gameController.whiteGuy.score))
+                    }
+                    Spacer()
+                    Spacer()
+                    VStack{
+                        Text("Black Score:")
+                        Text(String(gameController.blackGuy.score))
+                    }
                     Spacer()
                 }
             }
@@ -106,7 +151,25 @@ struct ContentView: View {
                     }
                 }
             }
+//            Spacer()
+//            //Счет
+//            HStack(spacing: 0){
+//                Text("Score:")
+//                Text("00000")
+//            }
+            
+            
             Spacer()
+            if gameController.whiteGuy.warehouse.count > 8{
+                
+                HStack(spacing: 0){
+                    ForEach((8..<16)) { idx in
+                        var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: idx)//съедание черными
+                        let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                        Еaten(color: Color.white, content: cellGlyph)//отрисoвка
+                    }
+                }
+            }
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
                     var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: col)
@@ -175,3 +238,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

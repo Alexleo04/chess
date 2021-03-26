@@ -21,8 +21,8 @@ class Board: ObservableObject{
         board[0][0] = Tower(.white)
         board[0][1] = Knight(.white)
         board[0][2] = Bishop(.white)
-        board[0][3] = King(.white)
-        board[0][4] = Queen(.white)
+        board[0][3] = Queen(.white)
+        board[0][4] = King(.white)
         board[0][5] = Bishop(.white)
         board[0][6] = Knight(.white)
         board[0][7] = Tower(.white)
@@ -30,8 +30,8 @@ class Board: ObservableObject{
         board[7][0] = Tower(.black)
         board[7][1] = Knight(.black)
         board[7][2] = Bishop(.black)
-        board[7][3] = King(.black)
-        board[7][4] = Queen(.black)
+        board[7][3] = Queen(.black)
+        board[7][4] = King(.black)
         board[7][5] = Bishop(.black)
         board[7][6] = Knight(.black)
         board[7][7] = Tower(.black)
@@ -52,10 +52,15 @@ class Board: ObservableObject{
         if figureInFromCell?.color != thePlayer.color{
             return false
         }
-        
+        if figureInFromCell! is King {
+            if castling(from, to){
+                return true
+            }
+        }
         if figureInToCell == nil{
             //MOVE
             if canMove(from, to, false){
+                figureInFromCell!.wasMoved = true
                 placeFigure(pos: to, fig: figureInFromCell!)
                 clearCell(from)
                 return true
@@ -75,13 +80,55 @@ class Board: ObservableObject{
         
         return false
      }
-           
+    
+    func castling(_ kingPoint: Point, _ targetPoint: Point) -> Bool{
+        func castlingKind(_ towerCoordStart: Point, _ kingCoordStart: Point, _ towerCoordEnd: Point, _ kingCoordEnd: Point) -> Bool{
+            let towerFig = getFigureByPoint(towerCoordStart)
+            if towerFig == nil && towerFig!.wasMoved{
+                return false
+            }
+            if !yourPathVerifier(towerFig!.myPath(from: kingCoordStart, to: towerCoordStart)){
+                return false
+            }
+            placeFigure(pos: kingCoordEnd, fig: kingFig!)
+            placeFigure(pos: towerCoordEnd, fig: towerFig!)
+            clearCell(kingCoordStart)
+            clearCell(towerCoordStart)
+            return true
+        }
+        //1.wasMoved?
+        if !kingPoint.isValid() || !targetPoint.isValid(){
+            return false
+        }
+        let kingFig = getFigureByPoint(kingPoint)
+        if kingFig == nil {
+            return false
+        }
+        if kingFig!.wasMoved{
+            return false
+        }
+        //2.Узнать тип ракировки
+        if targetPoint == Point(letter: .c, digit: 1){
+            return castlingKind(Point(letter: .a, digit: 1), Point(letter: .e, digit: 1), Point(letter: .d, digit: 1), Point(letter: .c, digit: 1))
+        }
+        if targetPoint == Point(letter: .g, digit: 1){
+            return castlingKind(Point(letter: .h, digit: 1), Point(letter: .e, digit: 1), Point(letter: .f, digit: 1), Point(letter: .g, digit: 1))
+        }
+        if targetPoint == Point(letter: .c, digit: 8){
+            return castlingKind(Point(letter: .a, digit: 8), Point(letter: .e, digit: 8), Point(letter: .d, digit: 8), Point(letter: .c, digit: 8))
+        }
+        if targetPoint == Point(letter: .g, digit: 8){
+            return castlingKind(Point(letter: .h, digit: 8), Point(letter: .e, digit: 8), Point(letter: .f, digit: 8), Point(letter: .g, digit: 8))
+        }
+        return false
+    }
+    
     func canMove(_ from: Point, _ to: Point, _ isEat: Bool) -> Bool{
         //1. Valiдность обеих точек
         if !from.isValid() || !to.isValid(){
             return false
         }
-        //2. From != nil? && To = nil?
+        //2. From != nil?
         let figureInFromCell = getFigureByPoint(from)
         if figureInFromCell == nil {
             return false
@@ -109,15 +156,22 @@ class Board: ObservableObject{
         }
         //4. Clear path?
         let дорожнаяКарта = movableFig.myPath(from: from, to: to)
+        if !yourPathVerifier(дорожнаяКарта){
+            return false
+        }
+
+        return true
+    }
+    
+    func yourPathVerifier(_ дорожнаяКарта: [Point]) -> Bool{
         for точка in дорожнаяКарта{
             if getFigureByPoint(точка) != nil{
                 return false
             }
         }
-
         return true
     }
-
+    
     func clearCell(_ point: Point){
         board[point.digit-1][point.letter.rawValue-1] = nil
     }
