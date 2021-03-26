@@ -14,7 +14,7 @@ struct ContentView: View {
     @StateObject var gameController: GameController = GameController()
     
     func clickHandler(point: Point){
-        gameController.moveSelector(point: point)
+        gameController.turnProcesin(point: point)
     }
     
     var body: some View {

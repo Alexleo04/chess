@@ -23,7 +23,7 @@ class GameController: ObservableObject{
         return blackGuy;
     }
     
-    func moveSelector(point: Point){
+    func turnProcesin(point: Point){
         print("moveProcessing: " + letters[point.letter.rawValue]! + ":" + String(point.digit))
         if fromClickedCell != nil {
             let player = playerSelector()
