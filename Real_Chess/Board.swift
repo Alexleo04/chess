@@ -15,6 +15,8 @@ class Board: ObservableObject{
     
     init(){
         fillBoard()
+        board[6][3] = Pawn(.white)
+        board[1][3] = Pawn(.black)
     }
     
     func fillBoard(){
@@ -44,17 +46,17 @@ class Board: ObservableObject{
         }
     }
     
-    func moveOrEat(_ from: Point, _ to: Point, _ thePlayer: Player) -> Bool{
+    func moveOrEat(_ from: Point, _ to: Point, _ thePlayer: Player) -> HodResult{
         // check if enemy in dest
         let figureInToCell = getFigureByPoint(to)
         let figureInFromCell = getFigureByPoint(from)
         
         if figureInFromCell?.color != thePlayer.color{
-            return false
+            return HodResult(status: false, pawnUpgrade: nil)
         }
         if figureInFromCell! is King {
             if castling(from, to){
-                return true
+                return HodResult(status: true, pawnUpgrade: nil)
             }
         }
         if figureInToCell == nil{
@@ -63,9 +65,15 @@ class Board: ObservableObject{
                 figureInFromCell!.wasMoved = true
                 placeFigure(pos: to, fig: figureInFromCell!)
                 clearCell(from)
-                return true
+                //1.figureInFromCell = пешка?
+                //2.to = 8 или 1
+                if figureInFromCell is Pawn && (to.digit == 8 || to.digit == 1){
+                    //3.Pawn Upgrade
+                    return HodResult(status: true, pawnUpgrade: PawnUpgrade(point: to))
+                }
+                return HodResult(status: true, pawnUpgrade: nil)
             }
-            return false
+            return HodResult(status: false, pawnUpgrade: nil)
         }else{
             //EAT
             if canMove(from, to, true){
@@ -73,12 +81,17 @@ class Board: ObservableObject{
                 clearCell(to)
                 placeFigure(pos: to, fig: figureInFromCell!)
                 clearCell(from)
-                return true
+                //1.figureInFromCell = пешка?
+                //2.to = 8 или 1
+                if figureInFromCell is Pawn && (to.digit == 8 || to.digit == 1){
+                    //3.Pawn Upgrade
+                    return HodResult(status: true, pawnUpgrade: PawnUpgrade(point: to))
+                }
+                return HodResult(status: true, pawnUpgrade: nil)
             }
-            return false
+            return HodResult(status: false, pawnUpgrade: nil)
         }
-        
-        return false
+        return HodResult(status: false, pawnUpgrade: nil)
      }
     
     func castling(_ kingPoint: Point, _ targetPoint: Point) -> Bool{
