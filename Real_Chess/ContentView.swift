@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Real_Chess
 //
-//  Created by Aleksey Leonov on 04/12/2020.
+//  Created by Juvenna Software on 04/12/2020.
 //
 import SwiftUI
 let colorCellWhite: Color = Color.white
@@ -14,7 +14,11 @@ struct ContentView: View {
     @StateObject var gameController: GameController = GameController()
     
     func clickHandler(point: Point){
-        gameController.turnProcesin(point: point)
+        gameController.moveProcesing(point: point)
+    }
+    
+    func pawnHandler(fig: String){
+        gameController.realPawnUpgrade(theChosen: fig)
     }
     
     var body: some View {
@@ -41,6 +45,7 @@ struct ContentView: View {
             }
             
             Spacer()
+            
             //ресуем чей ход
             if gameController.playerSelector().color == PlayerColor.black{
                 
@@ -161,7 +166,7 @@ struct ContentView: View {
             
             Spacer()
             if gameController.whiteGuy.warehouse.count > 8{
-                
+
                 HStack(spacing: 0){
                     ForEach((8..<16)) { idx in
                         var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: idx)//съедание черными
@@ -170,6 +175,14 @@ struct ContentView: View {
                     }
                 }
             }
+            Group{
+            HStack(spacing: 0){
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_queen", funcHandler: pawnHandler, askedFigure: "Queen")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_tower", funcHandler: pawnHandler, askedFigure: "Tower")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_bishop", funcHandler: pawnHandler, askedFigure: "Bishop")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_knight", funcHandler: pawnHandler, askedFigure: "Knight")
+            }
+            Spacer()
             HStack(spacing: 0){
                 ForEach((0..<8)) { col in
                     var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: col)
@@ -177,6 +190,7 @@ struct ContentView: View {
                     
                     Еaten(color: Color.white, content: cellGlyph)
                 }
+            }
             }
         }
     }
@@ -200,6 +214,27 @@ struct Cell: View{
         }
         .frame(width: 37.5, height: 37.5)
         .background(isPresed ? Color.green : color)
+        .contentShape(Rectangle())
+        .border(Color.black, width: 0.5)
+    }
+}
+
+struct PawnUpgradeDemostraitor: View{
+    // what is your coordinate
+    var color: Color
+    var theGlifer: String = ""
+    var funcHandler: (String) -> Void
+    var askedFigure: String
+    var body: some View{
+        Button(action: {funcHandler(askedFigure)}) {
+            Image(theGlifer)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 37.5, height: 37.5)
+                .padding()
+        }
+        .frame(width: 37.5, height: 37.5)
+        .background(color)
         .contentShape(Rectangle())
         .border(Color.black, width: 0.5)
     }
