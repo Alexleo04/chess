@@ -15,6 +15,7 @@ class GameController: ObservableObject{
 
     var player: Player?
     var result: HodResult?
+    
 
     @Published var whiteGuy: Player = Player(PlayerColor.white);
     @Published var blackGuy: Player = Player(PlayerColor.black);

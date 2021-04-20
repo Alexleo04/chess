@@ -9,6 +9,7 @@
 import Foundation
 struct HodResult{
     var status: Bool //успешное перемещение
+    var shakh: Bool
     var pawnUpgrade: PawnUpgrade? // pawn upgrade
 }
 struct PawnUpgrade{

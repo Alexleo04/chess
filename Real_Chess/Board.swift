@@ -9,14 +9,18 @@ import Foundation
 class Board: ObservableObject{
     @Published private var board: [[Figure?]] = Array(repeating: [nil,nil,nil,nil,nil,nil,nil,nil], count: 8)
     
+    let row = 8
+    let column = 8
+    
     func getBoard() -> [[Figure?]]{
         return board
     }
     
     init(){
         fillBoard()
-        board[6][3] = Pawn(.white)
-        board[1][3] = Pawn(.black)
+//        board[6][3] = Pawn(.white)
+//        board[1][3] = Pawn(.black)
+        board[4][3] = King(.black)
     }
     
     func fillBoard(){
@@ -33,7 +37,7 @@ class Board: ObservableObject{
         board[7][1] = Knight(.black)
         board[7][2] = Bishop(.black)
         board[7][3] = Queen(.black)
-        board[7][4] = King(.black)
+        //board[7][4] = King(.black)
         board[7][5] = Bishop(.black)
         board[7][6] = Knight(.black)
         board[7][7] = Tower(.black)
@@ -50,13 +54,14 @@ class Board: ObservableObject{
         // check if enemy in dest
         let figureInToCell = getFigureByPoint(to)
         let figureInFromCell = getFigureByPoint(from)
+        let hostileColor = thePlayer.color == PlayerColor.black ? PlayerColor.white : PlayerColor.black
         
         if figureInFromCell?.color != thePlayer.color{
-            return HodResult(status: false, pawnUpgrade: nil)
+            return HodResult(status: false, shakh: shakhDetector(hostileColor), pawnUpgrade: nil)
         }
         if figureInFromCell! is King {
             if castling(from, to){
-                return HodResult(status: true, pawnUpgrade: nil)
+                return HodResult(status: true, shakh: shakhDetector(hostileColor), pawnUpgrade: nil)
             }
         }
         if figureInToCell == nil{
@@ -69,11 +74,11 @@ class Board: ObservableObject{
                 //2.to = 8 или 1
                 if figureInFromCell is Pawn && (to.digit == 8 || to.digit == 1){
                     //3.Pawn Upgrade
-                    return HodResult(status: true, pawnUpgrade: PawnUpgrade(point: to))
+                    return HodResult(status: true, shakh: shakhDetector(hostileColor), pawnUpgrade: PawnUpgrade(point: to))
                 }
-                return HodResult(status: true, pawnUpgrade: nil)
+                return HodResult(status: true, shakh: shakhDetector(hostileColor), pawnUpgrade: nil)
             }
-            return HodResult(status: false, pawnUpgrade: nil)
+            return HodResult(status: false, shakh: shakhDetector(hostileColor), pawnUpgrade: nil)
         }else{
             //EAT
             if canMove(from, to, true){
@@ -85,14 +90,36 @@ class Board: ObservableObject{
                 //2.to = 8 или 1
                 if figureInFromCell is Pawn && (to.digit == 8 || to.digit == 1){
                     //3.Pawn Upgrade
-                    return HodResult(status: true, pawnUpgrade: PawnUpgrade(point: to))
+                    return HodResult(status: true, shakh: shakhDetector(hostileColor), pawnUpgrade: PawnUpgrade(point: to))
                 }
-                return HodResult(status: true, pawnUpgrade: nil)
+                return HodResult(status: true, shakh: shakhDetector(hostileColor), pawnUpgrade: nil)
             }
-            return HodResult(status: false, pawnUpgrade: nil)
+            return HodResult(status: false, shakh: shakhDetector(hostileColor), pawnUpgrade: nil)
         }
-        return HodResult(status: false, pawnUpgrade: nil)
+        return HodResult(status: false, shakh: shakhDetector(hostileColor), pawnUpgrade: nil)
      }
+    
+    func shakhDetector(_ color: PlayerColor) -> Bool{
+        //где король?
+        //какого цвета?
+        var kingCoords
+        for i in 0...row-1{
+            for j in 0...column-1{
+                if board[i][j] is King && board[i][j].color == color{
+                    kingCoords = Point(letter: i, digit: j)
+                }
+            }
+        }
+        for i in 1...8{
+            var hostileCoords = Helper.createPoint(letterNum: kingCoords.letter, digitNum: i)
+            if canMove(hostileCoords, kingCoords, true){
+                return true
+            }
+        }
+        //идет ли по вертекали способная фигура?
+        //идет ли по диагонали способная фигура?
+        //конь?
+    }
     
     func castling(_ kingPoint: Point, _ targetPoint: Point) -> Bool{
         func castlingKind(_ towerCoordStart: Point, _ kingCoordStart: Point, _ towerCoordEnd: Point, _ kingCoordEnd: Point) -> Bool{
@@ -153,7 +180,7 @@ class Board: ObservableObject{
         if isEat && (figureInToCell == nil || figureInToCell!.color == figureInFromCell!.color) {
             return false
         }
-        // if iseat = false and "to" != nil
+        // if isEat = false and "to" != nil
         if !isEat && (figureInToCell != nil) {
             return false
         }
