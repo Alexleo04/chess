@@ -43,6 +43,10 @@ class GameController: ObservableObject{
             print("black: " + String(blackGuy.score))
             fromClickedCell = nil
 
+            if result!.shakh{
+                print("finally it worked! 💀")
+            }
+            
             if !result!.status{
                 print("Turn cant be made")
                 return

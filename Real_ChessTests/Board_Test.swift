@@ -20,6 +20,11 @@ class Board_Test: XCTestCase {
         board.placeFigure(pos: fromPoint, fig: Queen(.white))
         XCTAssertTrue(board.canMove(fromPoint, toPoint, false))
     }
+    func testShakhSuccessfully(){
+        //board.clearCell(<#T##point: Point##Point#>) - очистить все клетки
+        //board.placeFigure - поставить две фигуры короля и врага(разные цвета)
+        XCTAssertTrue(board.shakhDetector(.white))
+    }
     func testSuccessfulCastling(){
         XCTAssertTrue(board.castling(Point(letter: .e, digit: 1), Point(letter: .g, digit: 1)))
         XCTAssertTrue(board.castling(Point(letter: .e, digit: 1), Point(letter: .c, digit: 1)))

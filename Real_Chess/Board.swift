@@ -20,7 +20,8 @@ class Board: ObservableObject{
         fillBoard()
 //        board[6][3] = Pawn(.white)
 //        board[1][3] = Pawn(.black)
-        board[4][3] = King(.black)
+        board[3][3] = King(.black)
+        board[4][7] = Tower(.white)
     }
     
     func fillBoard(){
@@ -31,7 +32,7 @@ class Board: ObservableObject{
         board[0][4] = King(.white)
         board[0][5] = Bishop(.white)
         board[0][6] = Knight(.white)
-        board[0][7] = Tower(.white)
+        //board[0][7] = Tower(.white)
 
         board[7][0] = Tower(.black)
         board[7][1] = Knight(.black)
@@ -102,20 +103,65 @@ class Board: ObservableObject{
     func shakhDetector(_ color: PlayerColor) -> Bool{
         //где король?
         //какого цвета?
-        var kingCoords
+        var kingCoords: Point?
         for i in 0...row-1{
             for j in 0...column-1{
-                if board[i][j] is King && board[i][j].color == color{
-                    kingCoords = Point(letter: i, digit: j)
+                if board[i][j] is King && board[i][j]!.color == color{
+                    kingCoords = Helper.createPoint(letterNum: i+1, digitNum: j+1)
                 }
             }
         }
+        if kingCoords == nil{
+            return false
+        }
         for i in 1...8{
-            var hostileCoords = Helper.createPoint(letterNum: kingCoords.letter, digitNum: i)
-            if canMove(hostileCoords, kingCoords, true){
+            var hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: i)
+            if canMove(hostileCoords, kingCoords!, true){
+                return true
+            }
+            hostileCoords = Helper.createPoint(letterNum: i, digitNum: kingCoords!.digit)
+            if canMove(hostileCoords, kingCoords!, true){
                 return true
             }
         }
+        //правая-верхняя
+        var hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
+        while hostileCoords.digit + 1 <= 8 && hostileCoords.letter.rawValue + 1 <= 8{
+            if canMove(hostileCoords, kingCoords!, true){
+                return true
+            }
+            hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+1, digitNum: kingCoords!.digit+1)
+            return false
+        }
+        //левая-верхняя
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
+        while hostileCoords.digit + 1 <= 8 && hostileCoords.letter.rawValue - 1 >= 1{
+            if canMove(hostileCoords, kingCoords!, true){
+                return true
+            }
+            hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-1, digitNum: kingCoords!.digit+1)
+            return false
+        }
+        //левая-нижняя
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
+        while hostileCoords.digit - 1 >= 1 && hostileCoords.letter.rawValue - 1 >= 1{
+            if canMove(hostileCoords, kingCoords!, true){
+                return true
+            }
+            hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-1, digitNum: kingCoords!.digit-1)
+            return false
+        }
+        //правая-нижняя
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
+        while hostileCoords.digit - 1 >= 1 && hostileCoords.letter.rawValue + 1 <= 8{
+            if canMove(hostileCoords, kingCoords!, true){
+                return true
+            }
+            hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+1, digitNum: kingCoords!.digit-1)
+            return false
+        }
+        
+        return false
         //идет ли по вертекали способная фигура?
         //идет ли по диагонали способная фигура?
         //конь?
