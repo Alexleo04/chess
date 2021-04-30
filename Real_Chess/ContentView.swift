@@ -12,6 +12,7 @@ let letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: 
 
 struct ContentView: View {
     @StateObject var gameController: GameController = GameController()
+
     
     func clickHandler(point: Point){
         gameController.moveProcesing(point: point)
@@ -193,6 +194,9 @@ struct ContentView: View {
             }
             }
         }
+        .alert(isPresented: $gameController.shakh) {
+                    Alert(title: Text("Shakh!"), message: Text("This app is meant to be fun for you and your friends. If you get shakh please do not cheat, unless you want to bug your friends!"), dismissButton: .default(Text("Got it!")))
+                }
     }
 }
 

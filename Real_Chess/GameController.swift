@@ -11,11 +11,11 @@ class GameController: ObservableObject{
     @Published var fromClickedCell: Point?
     @Published var board: Board = Board()
     @Published var couterAndRedrawer: Int = 0
+    @Published var shakh: Bool = false
     var ходCounter: Int = 0
 
     var player: Player?
     var result: HodResult?
-    
 
     @Published var whiteGuy: Player = Player(PlayerColor.white);
     @Published var blackGuy: Player = Player(PlayerColor.black);
@@ -44,7 +44,10 @@ class GameController: ObservableObject{
             fromClickedCell = nil
 
             if result!.shakh{
+                shakh = true
                 print("finally it worked! 💀")
+            }else{
+                shakh = false
             }
             
             if !result!.status{

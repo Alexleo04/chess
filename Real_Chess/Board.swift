@@ -9,7 +9,7 @@ import Foundation
 class Board: ObservableObject{
     @Published private var board: [[Figure?]] = Array(repeating: [nil,nil,nil,nil,nil,nil,nil,nil], count: 8)
     
-    let row = 8
+    let row = 8 // начинаем с 0 заканчиваем -1
     let column = 8
     
     func getBoard() -> [[Figure?]]{
@@ -103,11 +103,11 @@ class Board: ObservableObject{
     func shakhDetector(_ color: PlayerColor) -> Bool{
         //где король?
         //какого цвета?
-        var kingCoords: Point?
+        var kingCoords: Point? = nil
         for i in 0...row-1{
             for j in 0...column-1{
                 if board[i][j] is King && board[i][j]!.color == color{
-                    kingCoords = Helper.createPoint(letterNum: i+1, digitNum: j+1)
+                    kingCoords = Helper.createPoint(letterNum: j+1, digitNum: i+1)
                 }
             }
         }
@@ -115,10 +115,12 @@ class Board: ObservableObject{
             return false
         }
         for i in 1...8{
+            //вертикаль
             var hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: i)
             if canMove(hostileCoords, kingCoords!, true){
                 return true
             }
+            //горизонталь
             hostileCoords = Helper.createPoint(letterNum: i, digitNum: kingCoords!.digit)
             if canMove(hostileCoords, kingCoords!, true){
                 return true
@@ -127,38 +129,81 @@ class Board: ObservableObject{
         //правая-верхняя
         var hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
         while hostileCoords.digit + 1 <= 8 && hostileCoords.letter.rawValue + 1 <= 8{
+            hostileCoords = Helper.createPoint(letterNum: hostileCoords.letter.rawValue+1, digitNum: hostileCoords.digit+1)
             if canMove(hostileCoords, kingCoords!, true){
                 return true
             }
-            hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+1, digitNum: kingCoords!.digit+1)
-            return false
         }
         //левая-верхняя
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
         while hostileCoords.digit + 1 <= 8 && hostileCoords.letter.rawValue - 1 >= 1{
+            hostileCoords = Helper.createPoint(letterNum: hostileCoords.letter.rawValue-1, digitNum: hostileCoords.digit+1)
             if canMove(hostileCoords, kingCoords!, true){
                 return true
             }
-            hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-1, digitNum: kingCoords!.digit+1)
-            return false
         }
         //левая-нижняя
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
         while hostileCoords.digit - 1 >= 1 && hostileCoords.letter.rawValue - 1 >= 1{
+            hostileCoords = Helper.createPoint(letterNum: hostileCoords.letter.rawValue-1, digitNum: hostileCoords.digit-1)
             if canMove(hostileCoords, kingCoords!, true){
                 return true
             }
-            hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-1, digitNum: kingCoords!.digit-1)
-            return false
         }
         //правая-нижняя
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
         while hostileCoords.digit - 1 >= 1 && hostileCoords.letter.rawValue + 1 <= 8{
+            hostileCoords = Helper.createPoint(letterNum: hostileCoords.letter.rawValue+1, digitNum: hostileCoords.digit-1)
             if canMove(hostileCoords, kingCoords!, true){
                 return true
             }
-            hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+1, digitNum: kingCoords!.digit-1)
-            return false
+        }
+        //Конь 1
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+1, digitNum: kingCoords!.digit+2)
+        if canMove(hostileCoords, kingCoords!, true){
+            return true
+        }
+        
+        //Конь 2
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+2, digitNum: kingCoords!.digit+1)
+        if canMove(hostileCoords, kingCoords!, true){
+            return true
+        }
+        
+        //Конь 3
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+2, digitNum: kingCoords!.digit-1)
+        if canMove(hostileCoords, kingCoords!, true){
+            return true
+        }
+        
+        //Конь 4
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+1, digitNum: kingCoords!.digit-2)
+        if canMove(hostileCoords, kingCoords!, true){
+            return true
+        }
+        
+        //Конь 5
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-1, digitNum: kingCoords!.digit-2)
+        if canMove(hostileCoords, kingCoords!, true){
+            return true
+        }
+        
+        //Конь 6
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-2, digitNum: kingCoords!.digit-1)
+        if canMove(hostileCoords, kingCoords!, true){
+            return true
+        }
+        
+        //Конь 7
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-2, digitNum: kingCoords!.digit+1)
+        if canMove(hostileCoords, kingCoords!, true){
+            return true
+        }
+        
+        //Конь 8
+        hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-1, digitNum: kingCoords!.digit+2)
+        if canMove(hostileCoords, kingCoords!, true){
+            return true
         }
         
         return false
@@ -256,6 +301,14 @@ class Board: ObservableObject{
             }
         }
         return true
+    }
+    
+    func clearField(){
+        for m in 0...row-1{
+            for n in 0...column-1{
+                board[m][n] = nil
+            }
+        }
     }
     
     func clearCell(_ point: Point){
