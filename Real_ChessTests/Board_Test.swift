@@ -9,10 +9,10 @@
 import XCTest
 
 class Board_Test: XCTestCase {
-    var board: Board!
+    var board: BoardController!
     override func setUp() {
         super.setUp()
-        board = Board()
+        board = BoardController()
     }
     func test(){
         let fromPoint = Point(letter: .d, digit: 1);

@@ -9,7 +9,7 @@ import Foundation
 
 class GameController: ObservableObject{
     @Published var fromClickedCell: Point?
-    @Published var board: Board = Board()
+    @Published var boardController: BoardController = BoardController()
     @Published var couterAndRedrawer: Int = 0
     @Published var shakh: Bool = false
     var ходCounter: Int = 0
@@ -27,6 +27,14 @@ class GameController: ObservableObject{
         return blackGuy;
     }
     
+    func isUrgent(point: Point) -> Bool{
+        if result != nil && result!.shakh != nil && (result!.shakh!.king == point || result!.shakh!.hostile == point){
+            return true
+        }else{
+            return false
+        }
+    }
+    
     func moveProcesing(point: Point){
         print("moveProcessing: " + letters[point.letter.rawValue]! + ":" + String(point.digit))
         if result?.pawnUpgrade != nil{
@@ -34,7 +42,7 @@ class GameController: ObservableObject{
         }
         if fromClickedCell != nil {
             player = playerSelector()
-            result = board.moveOrEat(fromClickedCell!, point, player!)
+            result = boardController.moveOrEat(fromClickedCell!, point, player!)
             let whiteScore = whiteGuy.warehouseWorth()
             let blackScore = blackGuy.warehouseWorth()
             whiteGuy.score = whiteScore - blackScore
@@ -43,7 +51,7 @@ class GameController: ObservableObject{
             print("black: " + String(blackGuy.score))
             fromClickedCell = nil
 
-            if result!.shakh{
+            if result!.shakh != nil{
                 shakh = true
                 print("finally it worked! 💀")
             }else{
@@ -56,7 +64,9 @@ class GameController: ObservableObject{
             }
             if result?.pawnUpgrade == nil{
                 ходCounter += 1
-                result = nil
+                if result?.shakh == nil{
+                    result = nil
+                }
             }
         }else{
             fromClickedCell = point
@@ -80,7 +90,7 @@ class GameController: ObservableObject{
             return
         }
         if result != nil && result!.pawnUpgrade != nil{
-            board.placeFigure(pos: result!.pawnUpgrade!.point, fig: theChosenFigure)
+            boardController.getBoard().placeFigure(result!.pawnUpgrade!.point, theChosenFigure)
             couterAndRedrawer += 1
             ходCounter += 1
             result = nil

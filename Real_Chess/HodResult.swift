@@ -8,9 +8,14 @@
 
 import Foundation
 struct HodResult{
-    var status: Bool //успешное перемещение
-    var shakh: Bool
+    var status: Bool // перемещение
+    var shakh: Shakh? // шах
     var pawnUpgrade: PawnUpgrade? // pawn upgrade
+}
+struct Shakh{
+    var king: Point
+    var kingColor: PlayerColor
+    var hostile: Point
 }
 struct PawnUpgrade{
     var point: Point

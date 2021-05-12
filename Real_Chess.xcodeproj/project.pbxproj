@@ -14,6 +14,7 @@
 		F47D887925E9716F00B81DE2 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47D887825E9716F00B81DE2 /* Player.swift */; };
 		F48CDF87260E63F200A7CEEA /* HodResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CDF86260E63F200A7CEEA /* HodResult.swift */; };
 		F4C4EECF25FBED1300DF54DE /* PawnBlack_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C4EECE25FBED1300DF54DE /* PawnBlack_Test.swift */; };
+		F4CDF0D9264C449A004F3BA2 /* BoardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CDF0D8264C449A004F3BA2 /* BoardData.swift */; };
 		F4D07319257AAD8A006A9ACB /* Real_ChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07318257AAD8A006A9ACB /* Real_ChessApp.swift */; };
 		F4D0731B257AAD8A006A9ACB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0731A257AAD8A006A9ACB /* ContentView.swift */; };
 		F4D0731D257AAD8C006A9ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D0731C257AAD8C006A9ACB /* Assets.xcassets */; };
@@ -28,7 +29,7 @@
 		F4D07340257AB049006A9ACB /* Bishop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0733F257AB049006A9ACB /* Bishop.swift */; };
 		F4D07343257AB05C006A9ACB /* Knight.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07342257AB05C006A9ACB /* Knight.swift */; };
 		F4D07346257AB079006A9ACB /* Tower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07345257AB079006A9ACB /* Tower.swift */; };
-		F4D07349257AB09D006A9ACB /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07348257AB09D006A9ACB /* Board.swift */; };
+		F4D07349257AB09D006A9ACB /* BoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07348257AB09D006A9ACB /* BoardController.swift */; };
 		F4D07352257AB124006A9ACB /* Real_ChessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07351257AB124006A9ACB /* Real_ChessTests.swift */; };
 		F4D0735C257AB16A006A9ACB /* PawnWhite_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0735B257AB16A006A9ACB /* PawnWhite_Test.swift */; };
 		F4D07362257AB8C8006A9ACB /* King_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07361257AB8C8006A9ACB /* King_Test.swift */; };
@@ -56,6 +57,7 @@
 		F47D887825E9716F00B81DE2 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F48CDF86260E63F200A7CEEA /* HodResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HodResult.swift; sourceTree = "<group>"; };
 		F4C4EECE25FBED1300DF54DE /* PawnBlack_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawnBlack_Test.swift; sourceTree = "<group>"; };
+		F4CDF0D8264C449A004F3BA2 /* BoardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardData.swift; sourceTree = "<group>"; };
 		F4D07315257AAD8A006A9ACB /* Real_Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Real_Chess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D07318257AAD8A006A9ACB /* Real_ChessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Real_ChessApp.swift; sourceTree = "<group>"; };
 		F4D0731A257AAD8A006A9ACB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,7 +74,7 @@
 		F4D0733F257AB049006A9ACB /* Bishop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bishop.swift; sourceTree = "<group>"; };
 		F4D07342257AB05C006A9ACB /* Knight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knight.swift; sourceTree = "<group>"; };
 		F4D07345257AB079006A9ACB /* Tower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tower.swift; sourceTree = "<group>"; };
-		F4D07348257AB09D006A9ACB /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		F4D07348257AB09D006A9ACB /* BoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardController.swift; sourceTree = "<group>"; };
 		F4D0734F257AB124006A9ACB /* Real_ChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Real_ChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D07351257AB124006A9ACB /* Real_ChessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Real_ChessTests.swift; sourceTree = "<group>"; };
 		F4D07353257AB124006A9ACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -146,7 +148,8 @@
 				F4D07335257AAFB3006A9ACB /* Figure.swift */,
 				F425E9222601389E00B0431B /* figures */,
 				F4D07332257AAF70006A9ACB /* Point.swift */,
-				F4D07348257AB09D006A9ACB /* Board.swift */,
+				F4D07348257AB09D006A9ACB /* BoardController.swift */,
+				F4CDF0D8264C449A004F3BA2 /* BoardData.swift */,
 				F47D887825E9716F00B81DE2 /* Player.swift */,
 				8D77A27325F2ABCB002D2922 /* Helper.swift */,
 				F48CDF86260E63F200A7CEEA /* HodResult.swift */,
@@ -287,13 +290,14 @@
 				F4D07346257AB079006A9ACB /* Tower.swift in Sources */,
 				F4D0733D257AB031006A9ACB /* Queen.swift in Sources */,
 				F4D07333257AAF70006A9ACB /* Point.swift in Sources */,
-				F4D07349257AB09D006A9ACB /* Board.swift in Sources */,
+				F4D07349257AB09D006A9ACB /* BoardController.swift in Sources */,
 				8D77A27425F2ABCB002D2922 /* Helper.swift in Sources */,
 				F4D07329257AAE46006A9ACB /* PlayerColor.swift in Sources */,
 				F4D07340257AB049006A9ACB /* Bishop.swift in Sources */,
 				8DD2211825CDD8F3008E1DE2 /* GameController.swift in Sources */,
 				F4D0732C257AAE7A006A9ACB /* Letter.swift in Sources */,
 				F4D0733A257AB017006A9ACB /* King.swift in Sources */,
+				F4CDF0D9264C449A004F3BA2 /* BoardData.swift in Sources */,
 				F4D07343257AB05C006A9ACB /* Knight.swift in Sources */,
 				F47D887925E9716F00B81DE2 /* Player.swift in Sources */,
 				F4D0732F257AAF21006A9ACB /* Pawn.swift in Sources */,
