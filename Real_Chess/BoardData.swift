@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class BoardData{
+struct BoardData{
     private var data: [[Figure?]] = Array(repeating: [nil,nil,nil,nil,nil,nil,nil,nil], count: 8)
     
     static let row = 8 // начинаем с 0 заканчиваем -1

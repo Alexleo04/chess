@@ -14,23 +14,23 @@ class BoardController: ObservableObject{
     }
     
     init(){
-        //fillBoard()
+        fillBoard()
 //        board[6][3] = Pawn(.white)
 //        board[1][3] = Pawn(.black)
         trueData.placeFigure(Point(letter: .d, digit: 4), King(.black))
         trueData.placeFigure(Point(letter: .h, digit: 5), Tower(.white))
     }
     
-//    func fillBoard(){
-//        board[0][0] = Tower(.white)
-//        board[0][1] = Knight(.white)
-//        board[0][2] = Bishop(.white)
-//        board[0][3] = Queen(.white)
-//        board[0][4] = King(.white)
-//        board[0][5] = Bishop(.white)
-//        board[0][6] = Knight(.white)
-//        //board[0][7] = Tower(.white)
-//
+    func fillBoard(){
+        trueData.placeFigure(Point(letter: .h, digit: 1), Tower(.white))
+        trueData.placeFigure(Point(letter: .g, digit: 1), Knight(.white))
+        trueData.placeFigure(Point(letter: .f, digit: 1), Bishop(.white))
+        trueData.placeFigure(Point(letter: .e, digit: 1), Queen(.white))
+        trueData.placeFigure(Point(letter: .d, digit: 1), King(.white))
+        trueData.placeFigure(Point(letter: .c, digit: 1), Bishop(.white))
+        trueData.placeFigure(Point(letter: .b, digit: 1), Knight(.white))
+//        trueData.placeFigure(Point(letter: .a, digit: 1), Tower(.white))
+
 //        board[7][0] = Tower(.black)
 //        board[7][1] = Knight(.black)
 //        board[7][2] = Bishop(.black)
@@ -39,14 +39,14 @@ class BoardController: ObservableObject{
 //        board[7][5] = Bishop(.black)
 //        board[7][6] = Knight(.black)
 //        board[7][7] = Tower(.black)
-//
+
 //        for j in 0...board[1].count-1{
 //            board[1][j] = Pawn(.white)
 //        }
 //        for j in 0...board[6].count-1{
 //            board[6][j] = Pawn(.black)
 //        }
-//    }
+    }
     
     func moveOrEat(_ from: Point, _ to: Point, _ thePlayer: Player) -> HodResult{
         // check if enemy in dest
@@ -74,6 +74,7 @@ class BoardController: ObservableObject{
                     //3.Pawn Upgrade
                     return HodResult(status: true, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: PawnUpgrade(point: to))
                 }
+                
                 return HodResult(status: true, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
             }
             return HodResult(status: false, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
