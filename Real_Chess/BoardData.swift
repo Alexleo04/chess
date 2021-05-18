@@ -6,11 +6,17 @@
 //
 
 import Foundation
-struct BoardData{
+class BoardData{
     private var data: [[Figure?]] = Array(repeating: [nil,nil,nil,nil,nil,nil,nil,nil], count: 8)
     
     static let row = 8 // начинаем с 0 заканчиваем -1
     static let column = 8
+    
+    func copy() -> BoardData{
+        var copy = BoardData()
+        copy.data = data
+        return copy
+    }
     
     func clearField(){
         for m in 0...BoardData.row-1{

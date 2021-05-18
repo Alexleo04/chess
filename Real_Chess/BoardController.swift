@@ -22,7 +22,7 @@ class BoardController: ObservableObject{
     }
     
     func fillBoard(){
-        trueData.placeFigure(Point(letter: .h, digit: 1), Tower(.white))
+        trueData.placeFigure(Point(letter: .a, digit: 1), Tower(.white))
         trueData.placeFigure(Point(letter: .g, digit: 1), Knight(.white))
         trueData.placeFigure(Point(letter: .f, digit: 1), Bishop(.white))
         trueData.placeFigure(Point(letter: .e, digit: 1), Queen(.white))
@@ -31,71 +31,80 @@ class BoardController: ObservableObject{
         trueData.placeFigure(Point(letter: .b, digit: 1), Knight(.white))
 //        trueData.placeFigure(Point(letter: .a, digit: 1), Tower(.white))
 
-//        board[7][0] = Tower(.black)
-//        board[7][1] = Knight(.black)
-//        board[7][2] = Bishop(.black)
-//        board[7][3] = Queen(.black)
-//        //board[7][4] = King(.black)
-//        board[7][5] = Bishop(.black)
-//        board[7][6] = Knight(.black)
-//        board[7][7] = Tower(.black)
+        trueData.placeFigure(Point(letter: .h, digit: 8), Tower(.black))
+        trueData.placeFigure(Point(letter: .g, digit: 8), Knight(.black))
+        trueData.placeFigure(Point(letter: .f, digit: 8), Bishop(.black))
+        trueData.placeFigure(Point(letter: .e, digit: 8), Queen(.black))
+//        trueData.placeFigure(Point(letter: .d, digit: 8), King(.black))
+        trueData.placeFigure(Point(letter: .c, digit: 8), Bishop(.black))
+        trueData.placeFigure(Point(letter: .b, digit: 8), Knight(.black))
+        trueData.placeFigure(Point(letter: .a, digit: 8), Tower(.black))
 
-//        for j in 0...board[1].count-1{
-//            board[1][j] = Pawn(.white)
-//        }
-//        for j in 0...board[6].count-1{
-//            board[6][j] = Pawn(.black)
-//        }
+        for j in 0...BoardData.row{
+            trueData.placeFigure(Helper.createPoint(letterNum: j, digitNum: 2), Pawn(.white))
+        }
+        for j in 0...BoardData.row{
+            trueData.placeFigure(Helper.createPoint(letterNum: j, digitNum: 7), Pawn(.black))
+        }
     }
     
     func moveOrEat(_ from: Point, _ to: Point, _ thePlayer: Player) -> HodResult{
+        var testHodResult = moveOrEatInternal(from, to, thePlayer.copy(), trueData.copy())
+        var isShakh = shakhDetector(thePlayer.color, testHodResult.boardCondition)
+        if isShakh == nil{
+            return moveOrEatInternal(from, to, thePlayer, trueData)
+        }
+        return HodResult.init(status: false, shakh: nil, pawnUpgrade: nil, boardCondition: trueData)
+    }
+    
+    func moveOrEatInternal(_ from: Point, _ to: Point, _ thePlayer: Player, _ data: BoardData) -> HodResult{
         // check if enemy in dest
-        let figureInToCell = trueData.getFigureByPoint(to)
-        let figureInFromCell = trueData.getFigureByPoint(from)
+        let figureInToCell = data.getFigureByPoint(to)
+        let figureInFromCell = data.getFigureByPoint(from)
         let hostileColor = thePlayer.color == PlayerColor.black ? PlayerColor.white : PlayerColor.black
         
         if figureInFromCell?.color != thePlayer.color{
-            return HodResult(status: false, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
+            return HodResult(status: false, shakh: shakhDetector(hostileColor, data), pawnUpgrade: nil, boardCondition: data)
         }
         if figureInFromCell! is King {
-            if castling(from, to, trueData){
-                return HodResult(status: true, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
+            if castling(from, to, data){
+                return HodResult(status: true, shakh: shakhDetector(hostileColor, data), pawnUpgrade: nil, boardCondition: data)
             }
         }
         if figureInToCell == nil{
             //MOVE
-            if canMove(from, to, false, trueData){
+            if canMove(from, to, false, data){
                 figureInFromCell!.wasMoved = true
-                trueData.placeFigure(to, figureInFromCell!)
-                trueData.clearCell(from)
+                data.placeFigure(to, figureInFromCell!)
+                data.clearCell(from)
                 //1.figureInFromCell = пешка?
                 //2.to = 8 или 1
                 if figureInFromCell is Pawn && (to.digit == 8 || to.digit == 1){
                     //3.Pawn Upgrade
-                    return HodResult(status: true, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: PawnUpgrade(point: to))
+                    return HodResult(status: true, shakh: shakhDetector(hostileColor, data), pawnUpgrade: PawnUpgrade(point: to), boardCondition: data)
                 }
                 
-                return HodResult(status: true, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
+                return HodResult(status: true, shakh: shakhDetector(hostileColor, data), pawnUpgrade: nil, boardCondition: data)
             }
-            return HodResult(status: false, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
+            return HodResult(status: false, shakh: shakhDetector(hostileColor, data), pawnUpgrade: nil, boardCondition: data)
         }else{
             //EAT
-            if canMove(from, to, true, trueData){
-                thePlayer.archieve(eaten: trueData.getFigureByPoint(to)!)
-                trueData.clearCell(to)
-                trueData.placeFigure(to, figureInFromCell!)
-                trueData.clearCell(from)
+            if canMove(from, to, true, data){
+                thePlayer.archieve(eaten: data.getFigureByPoint(to)!)
+                data.clearCell(to)
+                data.placeFigure(to, figureInFromCell!)
+                data.clearCell(from)
                 //1.figureInFromCell = пешка?
                 //2.to = 8 или 1
                 if figureInFromCell is Pawn && (to.digit == 8 || to.digit == 1){
                     //3.Pawn Upgrade
-                    return HodResult(status: true, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: PawnUpgrade(point: to))
+                    return HodResult(status: true, shakh: shakhDetector(hostileColor, data), pawnUpgrade: PawnUpgrade(point: to), boardCondition: data)
                 }
-                return HodResult(status: true, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
+                return HodResult(status: true, shakh: shakhDetector(hostileColor, data), pawnUpgrade: nil, boardCondition: data)
             }
-            return HodResult(status: false, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
+            return HodResult(status: false, shakh: shakhDetector(hostileColor, data), pawnUpgrade: nil, boardCondition: data)
         }
-        return HodResult(status: false, shakh: shakhDetector(hostileColor, trueData), pawnUpgrade: nil)
+        return HodResult(status: false, shakh: shakhDetector(hostileColor, data), pawnUpgrade: nil, boardCondition: data)
      }
     
     func shakhDetector(_ color: PlayerColor, _ data: BoardData) -> Shakh?{
@@ -116,12 +125,12 @@ class BoardController: ObservableObject{
         for i in 1...8{
             //вертикаль
             var hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: i)
-            if canMove(hostileCoords, kingCoords!, true, trueData){
+            if canMove(hostileCoords, kingCoords!, true, data){
                 return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
             }
             //горизонталь
             hostileCoords = Helper.createPoint(letterNum: i, digitNum: kingCoords!.digit)
-            if canMove(hostileCoords, kingCoords!, true, trueData){
+            if canMove(hostileCoords, kingCoords!, true, data){
                 return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
             }
         }
@@ -129,7 +138,7 @@ class BoardController: ObservableObject{
         var hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
         while hostileCoords.digit + 1 <= 8 && hostileCoords.letter.rawValue + 1 <= 8{
             hostileCoords = Helper.createPoint(letterNum: hostileCoords.letter.rawValue+1, digitNum: hostileCoords.digit+1)
-            if canMove(hostileCoords, kingCoords!, true, trueData){
+            if canMove(hostileCoords, kingCoords!, true, data){
                 return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
             }
         }
@@ -137,7 +146,7 @@ class BoardController: ObservableObject{
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
         while hostileCoords.digit + 1 <= 8 && hostileCoords.letter.rawValue - 1 >= 1{
             hostileCoords = Helper.createPoint(letterNum: hostileCoords.letter.rawValue-1, digitNum: hostileCoords.digit+1)
-            if canMove(hostileCoords, kingCoords!, true, trueData){
+            if canMove(hostileCoords, kingCoords!, true, data){
                 return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
             }
         }
@@ -145,7 +154,7 @@ class BoardController: ObservableObject{
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
         while hostileCoords.digit - 1 >= 1 && hostileCoords.letter.rawValue - 1 >= 1{
             hostileCoords = Helper.createPoint(letterNum: hostileCoords.letter.rawValue-1, digitNum: hostileCoords.digit-1)
-            if canMove(hostileCoords, kingCoords!, true, trueData){
+            if canMove(hostileCoords, kingCoords!, true, data){
                 return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
             }
         }
@@ -153,55 +162,55 @@ class BoardController: ObservableObject{
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue, digitNum: kingCoords!.digit)
         while hostileCoords.digit - 1 >= 1 && hostileCoords.letter.rawValue + 1 <= 8{
             hostileCoords = Helper.createPoint(letterNum: hostileCoords.letter.rawValue+1, digitNum: hostileCoords.digit-1)
-            if canMove(hostileCoords, kingCoords!, true, trueData){
+            if canMove(hostileCoords, kingCoords!, true, data){
                 return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
             }
         }
         //Конь 1
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+1, digitNum: kingCoords!.digit+2)
-        if canMove(hostileCoords, kingCoords!, true, trueData){
+        if canMove(hostileCoords, kingCoords!, true, data){
             return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
         }
         
         //Конь 2
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+2, digitNum: kingCoords!.digit+1)
-        if canMove(hostileCoords, kingCoords!, true, trueData){
+        if canMove(hostileCoords, kingCoords!, true, data){
             return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
         }
         
         //Конь 3
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+2, digitNum: kingCoords!.digit-1)
-        if canMove(hostileCoords, kingCoords!, true, trueData){
+        if canMove(hostileCoords, kingCoords!, true, data){
             return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
         }
         
         //Конь 4
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue+1, digitNum: kingCoords!.digit-2)
-        if canMove(hostileCoords, kingCoords!, true, trueData){
+        if canMove(hostileCoords, kingCoords!, true, data){
             return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
         }
         
         //Конь 5
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-1, digitNum: kingCoords!.digit-2)
-        if canMove(hostileCoords, kingCoords!, true, trueData){
+        if canMove(hostileCoords, kingCoords!, true, data){
             return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
         }
         
         //Конь 6
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-2, digitNum: kingCoords!.digit-1)
-        if canMove(hostileCoords, kingCoords!, true, trueData){
+        if canMove(hostileCoords, kingCoords!, true, data){
             return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
         }
         
         //Конь 7
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-2, digitNum: kingCoords!.digit+1)
-        if canMove(hostileCoords, kingCoords!, true, trueData){
+        if canMove(hostileCoords, kingCoords!, true, data){
             return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
         }
         
         //Конь 8
         hostileCoords = Helper.createPoint(letterNum: kingCoords!.letter.rawValue-1, digitNum: kingCoords!.digit+2)
-        if canMove(hostileCoords, kingCoords!, true, trueData){
+        if canMove(hostileCoords, kingCoords!, true, data){
             return Shakh(king: kingCoords!, kingColor: color, hostile: hostileCoords)
         }
         

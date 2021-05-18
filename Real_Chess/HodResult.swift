@@ -11,6 +11,7 @@ struct HodResult{
     var status: Bool // перемещение
     var shakh: Shakh? // шах
     var pawnUpgrade: PawnUpgrade? // pawn upgrade
+    var boardCondition: BoardData // состояние доски
 }
 struct Shakh{
     var king: Point

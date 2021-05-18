@@ -30,6 +30,12 @@ class Player{
         }
         return nil
     }
+    func copy() -> Player{
+        var copy = Player(color)
+        copy.warehouse = warehouse
+        copy.score = score
+        return copy
+    }
     init(_ color: PlayerColor) {
         self.color = color
         warehouse = []
