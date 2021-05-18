@@ -15,6 +15,7 @@
 		F48CDF87260E63F200A7CEEA /* HodResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48CDF86260E63F200A7CEEA /* HodResult.swift */; };
 		F4C4EECF25FBED1300DF54DE /* PawnBlack_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C4EECE25FBED1300DF54DE /* PawnBlack_Test.swift */; };
 		F4CDF0D9264C449A004F3BA2 /* BoardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CDF0D8264C449A004F3BA2 /* BoardData.swift */; };
+		F4CDF0E126543250004F3BA2 /*  Ai.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CDF0E026543250004F3BA2 /*  Ai.swift */; };
 		F4D07319257AAD8A006A9ACB /* Real_ChessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D07318257AAD8A006A9ACB /* Real_ChessApp.swift */; };
 		F4D0731B257AAD8A006A9ACB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D0731A257AAD8A006A9ACB /* ContentView.swift */; };
 		F4D0731D257AAD8C006A9ACB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4D0731C257AAD8C006A9ACB /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		F48CDF86260E63F200A7CEEA /* HodResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HodResult.swift; sourceTree = "<group>"; };
 		F4C4EECE25FBED1300DF54DE /* PawnBlack_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawnBlack_Test.swift; sourceTree = "<group>"; };
 		F4CDF0D8264C449A004F3BA2 /* BoardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardData.swift; sourceTree = "<group>"; };
+		F4CDF0E026543250004F3BA2 /*  Ai.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Ai.swift"; sourceTree = "<group>"; };
 		F4D07315257AAD8A006A9ACB /* Real_Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Real_Chess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4D07318257AAD8A006A9ACB /* Real_ChessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Real_ChessApp.swift; sourceTree = "<group>"; };
 		F4D0731A257AAD8A006A9ACB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				F425E9222601389E00B0431B /* figures */,
 				F4D07332257AAF70006A9ACB /* Point.swift */,
 				F4D07348257AB09D006A9ACB /* BoardController.swift */,
+				F4CDF0E026543250004F3BA2 /*  Ai.swift */,
 				F4CDF0D8264C449A004F3BA2 /* BoardData.swift */,
 				F47D887825E9716F00B81DE2 /* Player.swift */,
 				8D77A27325F2ABCB002D2922 /* Helper.swift */,
@@ -290,6 +293,7 @@
 				F4D07346257AB079006A9ACB /* Tower.swift in Sources */,
 				F4D0733D257AB031006A9ACB /* Queen.swift in Sources */,
 				F4D07333257AAF70006A9ACB /* Point.swift in Sources */,
+				F4CDF0E126543250004F3BA2 /*  Ai.swift in Sources */,
 				F4D07349257AB09D006A9ACB /* BoardController.swift in Sources */,
 				8D77A27425F2ABCB002D2922 /* Helper.swift in Sources */,
 				F4D07329257AAE46006A9ACB /* PlayerColor.swift in Sources */,

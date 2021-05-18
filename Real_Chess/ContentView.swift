@@ -62,7 +62,7 @@ struct ContentView: View {
             Spacer()
             
             //ресуем чей ход
-            if gameController.playerSelector().color == PlayerColor.black{
+            if gameController.currentPlayer().color == PlayerColor.black{
                 
                 HStack{
                     Spacer()
@@ -136,7 +136,7 @@ struct ContentView: View {
                             let point = Helper.createPoint(letterNum: column, digitNum: convertedRow)
                             
                             var realisUrgent: Bool = gameController.isUrgent(point: point)
-                            var isPressed: Bool = point == gameController.fromClickedCell
+                            var isPressed: Bool = point == gameController.cellFrom
 //
                             let cellContent: String = Helper.getGlyphNameFromFigure(gameController.boardController.getBoard().getFigureByPoint(point))
 //
