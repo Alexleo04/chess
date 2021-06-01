@@ -59,4 +59,8 @@ class Tower: Figure{
         }
         return distancePro
     }
+    
+//    override func whereCanImove(_ point: Point) -> [Point] {
+//        <#code#>
+//    }
 }

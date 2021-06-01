@@ -12,6 +12,9 @@ class Figure{
     var color: PlayerColor
     var weight: Int
     var wasMoved: Bool = false
+    func whereCanImove(_ point: Point) -> [Point]{
+        return []
+    }
     init(_ color: PlayerColor, _ theGlifer: String, _ weight: Int) {
         self.color = color
         self.weight = weight

@@ -21,6 +21,21 @@ class PawnBlack_Test: XCTestCase {
         XCTAssertTrue(pawn.canMove(from: Point(letter: .a, digit: 5), to: Point(letter: .a, digit: 4)))
         
     }
+    
+    func testMyMovementPosibility(){
+        XCTAssertEqual([
+            Point(letter: .f, digit: 2),
+            Point(letter: .e, digit: 2),
+            Point(letter: .g, digit: 2),
+        ], pawn.whereCanImove(Point(letter: .f, digit: 3)))
+        XCTAssertEqual([
+            Point(letter: .e, digit: 6),
+            Point(letter: .d, digit: 6),
+            Point(letter: .f, digit: 6),
+            Point(letter: .e, digit: 5)
+        ], pawn.whereCanImove(Point(letter: .e, digit: 7)))
+    }
+    
     func testCantMoveSuccessfully(){
         XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 2), to: Point(letter: .a, digit: 3)))
         XCTAssertFalse(pawn.canMove(from: Point(letter: .a, digit: 6), to: Point(letter: .a, digit: 7)))

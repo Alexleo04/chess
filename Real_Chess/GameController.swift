@@ -54,9 +54,20 @@ class GameController: ObservableObject{
                 if result?.shakh == nil{
                     result = nil
                 }
-                var aiResult = ai.лучшийХод(boardController.getBoard().copy(), whiteGuy.copy(), blackGuy.copy())
-                boardController.moveOrEat(aiResult.from, aiResult.to, blackGuy)
-                ходCounter += 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    var aiMoveCoords = self.ai.лучшийХод(self.boardController.getBoard().copy(), self.whiteGuy.copy(), self.blackGuy.copy())
+                    self.result = self.boardController.moveOrEat(aiMoveCoords.from, aiMoveCoords.to, self.blackGuy)
+                    
+                    if self.result?.shakh != nil{
+                        self.shakh = true
+                        print("finally it worked! 💀")
+                    }else{
+                        self.shakh = false
+                    }
+                    
+                    self.ходCounter += 1
+                    self.couterAndRedrawer += 1
+                }
             }
         }else{
             cellFrom = point

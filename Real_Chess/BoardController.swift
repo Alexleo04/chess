@@ -7,18 +7,19 @@
 
 import Foundation
 class BoardController: ObservableObject{
-    var trueData = BoardData()
+    var trueData: BoardData
     
     func getBoard() -> BoardData{
         return trueData
     }
     
+    init(_ boarddata: BoardData){
+        trueData = boarddata
+    }
+    
     init(){
+        trueData = BoardData()
         fillBoard()
-//        board[6][3] = Pawn(.white)
-//        board[1][3] = Pawn(.black)
-        trueData.placeFigure(Point(letter: .d, digit: 4), King(.black))
-        trueData.placeFigure(Point(letter: .h, digit: 5), Tower(.white))
     }
     
     func fillBoard(){
@@ -29,13 +30,13 @@ class BoardController: ObservableObject{
         trueData.placeFigure(Point(letter: .d, digit: 1), King(.white))
         trueData.placeFigure(Point(letter: .c, digit: 1), Bishop(.white))
         trueData.placeFigure(Point(letter: .b, digit: 1), Knight(.white))
-//        trueData.placeFigure(Point(letter: .a, digit: 1), Tower(.white))
+        trueData.placeFigure(Point(letter: .h, digit: 1), Tower(.white))
 
         trueData.placeFigure(Point(letter: .h, digit: 8), Tower(.black))
         trueData.placeFigure(Point(letter: .g, digit: 8), Knight(.black))
         trueData.placeFigure(Point(letter: .f, digit: 8), Bishop(.black))
         trueData.placeFigure(Point(letter: .e, digit: 8), Queen(.black))
-//        trueData.placeFigure(Point(letter: .d, digit: 8), King(.black))
+        trueData.placeFigure(Point(letter: .d, digit: 8), King(.black))
         trueData.placeFigure(Point(letter: .c, digit: 8), Bishop(.black))
         trueData.placeFigure(Point(letter: .b, digit: 8), Knight(.black))
         trueData.placeFigure(Point(letter: .a, digit: 8), Tower(.black))
