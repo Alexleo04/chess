@@ -192,9 +192,9 @@ struct ContentView: View {
             }
             }
         }
-        .alert(isPresented: $gameController.shakh) {
-                    Alert(title: Text("Shakh!"), message: Text("This app is meant to be fun for you and your friends. If you get shakh please do not cheat, unless you want to bug your friends!"), dismissButton: .default(Text("Got it!")))
-                }
+//        .alert(isPresented: $gameController.shakh) {
+//                    Alert(title: Text("Shakh!"), message: Text("This app is meant to be fun for you and your friends. If you get shakh please do not cheat, unless you want to bug your friends!"), dismissButton: .default(Text("Got it!")))
+//                }
     }
 }
 

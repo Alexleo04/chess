@@ -65,5 +65,23 @@ class Bishop: Figure{
         }
         return distancePro
     }
+    override func whereCanImove(_ point: Point) -> [Point] {
+        var movableCoords: [Point] = []
+        for m in 1...8{
+            if point.letter.rawValue+m <= 8 && point.digit+m <= 8{
+                movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue+m, digitNum: point.digit+m))
+            }
+            if point.letter.rawValue+m <= 8 && point.digit-m >= 1{
+                movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue+m, digitNum: point.digit-m))
+            }
+            if point.letter.rawValue-m >= 1 && point.digit+m <= 8{
+                movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue-m, digitNum: point.digit+m))
+            }
+            if point.letter.rawValue-m >= 1 && point.digit-m >= 1{
+                movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue-m, digitNum: point.digit-m))
+            }
+        }
+        return movableCoords;
+    }
 }
 //d4 e5 f6

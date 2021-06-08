@@ -23,30 +23,33 @@ class BoardController: ObservableObject{
     }
     
     func fillBoard(){
-        trueData.placeFigure(Point(letter: .a, digit: 1), Tower(.white))
-        trueData.placeFigure(Point(letter: .g, digit: 1), Knight(.white))
-        trueData.placeFigure(Point(letter: .f, digit: 1), Bishop(.white))
-        trueData.placeFigure(Point(letter: .e, digit: 1), Queen(.white))
-        trueData.placeFigure(Point(letter: .d, digit: 1), King(.white))
-        trueData.placeFigure(Point(letter: .c, digit: 1), Bishop(.white))
-        trueData.placeFigure(Point(letter: .b, digit: 1), Knight(.white))
-        trueData.placeFigure(Point(letter: .h, digit: 1), Tower(.white))
-
-        trueData.placeFigure(Point(letter: .h, digit: 8), Tower(.black))
-        trueData.placeFigure(Point(letter: .g, digit: 8), Knight(.black))
-        trueData.placeFigure(Point(letter: .f, digit: 8), Bishop(.black))
-        trueData.placeFigure(Point(letter: .e, digit: 8), Queen(.black))
-        trueData.placeFigure(Point(letter: .d, digit: 8), King(.black))
-        trueData.placeFigure(Point(letter: .c, digit: 8), Bishop(.black))
-        trueData.placeFigure(Point(letter: .b, digit: 8), Knight(.black))
-        trueData.placeFigure(Point(letter: .a, digit: 8), Tower(.black))
-
-        for j in 0...BoardData.row{
-            trueData.placeFigure(Helper.createPoint(letterNum: j, digitNum: 2), Pawn(.white))
-        }
-        for j in 0...BoardData.row{
-            trueData.placeFigure(Helper.createPoint(letterNum: j, digitNum: 7), Pawn(.black))
-        }
+        trueData.placeFigure(Point(letter: .d, digit: 5), Pawn(.black))
+        trueData.placeFigure(Point(letter: .f, digit: 4), Tower(.white))
+        trueData.placeFigure(Point(letter: .b, digit: 2), Pawn(.black))
+//        trueData.placeFigure(Point(letter: .a, digit: 1), Tower(.white))
+//        trueData.placeFigure(Point(letter: .g, digit: 1), Knight(.white))
+//        trueData.placeFigure(Point(letter: .f, digit: 1), Bishop(.white))
+//        trueData.placeFigure(Point(letter: .d, digit: 1), Queen(.white))
+//        trueData.placeFigure(Point(letter: .e, digit: 1), King(.white))
+//        trueData.placeFigure(Point(letter: .c, digit: 1), Bishop(.white))
+//        trueData.placeFigure(Point(letter: .b, digit: 1), Knight(.white))
+//        trueData.placeFigure(Point(letter: .h, digit: 1), Tower(.white))
+//
+//        trueData.placeFigure(Point(letter: .h, digit: 8), Tower(.black))
+//        trueData.placeFigure(Point(letter: .g, digit: 8), Knight(.black))
+//        trueData.placeFigure(Point(letter: .f, digit: 8), Bishop(.black))
+//        trueData.placeFigure(Point(letter: .d, digit: 8), Queen(.black))
+//        trueData.placeFigure(Point(letter: .e, digit: 8), King(.black))
+//        trueData.placeFigure(Point(letter: .c, digit: 8), Bishop(.black))
+//        trueData.placeFigure(Point(letter: .b, digit: 8), Knight(.black))
+//        trueData.placeFigure(Point(letter: .a, digit: 8), Tower(.black))
+//
+//        for j in 0...BoardData.row{
+//            trueData.placeFigure(Helper.createPoint(letterNum: j, digitNum: 2), Pawn(.white))
+//        }
+//        for j in 0...BoardData.row{
+//            trueData.placeFigure(Helper.createPoint(letterNum: j, digitNum: 7), Pawn(.black))
+//        }
     }
     
     func moveOrEat(_ from: Point, _ to: Point, _ thePlayer: Player) -> HodResult{
@@ -224,7 +227,10 @@ class BoardController: ObservableObject{
     func castling(_ kingPoint: Point, _ targetPoint: Point, _ data: BoardData) -> Bool{
         func castlingKind(_ towerCoordStart: Point, _ kingCoordStart: Point, _ towerCoordEnd: Point, _ kingCoordEnd: Point) -> Bool{
             let towerFig = data.getFigureByPoint(towerCoordStart)
-            if towerFig == nil && towerFig!.wasMoved{
+            if towerFig == nil{
+                return false
+            }
+            if towerFig != nil && towerFig!.wasMoved{
                 return false
             }
             if !yourPathVerifier(towerFig!.myPath(from: kingCoordStart, to: towerCoordStart), data){

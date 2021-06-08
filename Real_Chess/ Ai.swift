@@ -7,31 +7,74 @@
 
 import Foundation
 class Ai{
-    func лучшийХод(_ field: BoardData, _ normalPlayer: Player, _ aiPlayer: Player) -> FromTooToo{
-        var result: FromTooToo?
-        var maxScore = -100000
-        for m in 0...BoardData.row-1{
-            for t in 0...BoardData.column-1{
-                var pointFrom = Helper.createPoint(letterNum: t+1, digitNum: m+1)
+    func moveListGenerator(_ field: BoardData, _ thePlayer: Player) -> [FromTooToo]{
+        var moveList: [FromTooToo] = []
+        for m in 1...BoardData.row{
+            for t in 1...BoardData.column{
+                //получаем точку
+                var pointFrom = Helper.createPoint(letterNum: t, digitNum: m)
+                //получаем фигуру
                 var fig = field.getFigureByPoint(pointFrom)
+                //проверяем пустая или нет?
                 if fig == nil{ continue }
-                if fig!.color != aiPlayer.color{ continue }
+                //удоставеряемся что цвет не отличается
+                if fig!.color != thePlayer.color{ continue }
+                //получаем точки куда fig может пойти
                 var points = fig!.whereCanImove(pointFrom)
                 for point in points{
-                    var boardController = BoardController(field.copy())
-                    var fakePlayer = aiPlayer.copy()
-                    var before = fakePlayer.warehouseWorth()
-                    boardController.moveOrEat(pointFrom, point, fakePlayer)
-                    var after = fakePlayer.warehouseWorth()
-                    var scoreResult = after - before
-                    if scoreResult > maxScore{
-                        maxScore = scoreResult
-                        result = FromTooToo(from: pointFrom, to: point)
-                    }
+                    moveList.append(FromTooToo(from: pointFrom, to: point))
                 }
             }
         }
-        return result!
+        return moveList
+    }
+    func boardScore(_ field: BoardData) -> Int{
+        var totalScore: Int = 0
+        for m in 1...BoardData.row{
+            for t in 1...BoardData.column{
+                //получаем точку
+                var pointFrom = Helper.createPoint(letterNum: t, digitNum: m)
+                //получаем фигуру
+                var fig = field.getFigureByPoint(pointFrom)
+                if fig == nil{ continue }
+                if fig!.color == PlayerColor.white{
+                    totalScore += fig!.weight
+                }else{
+                    totalScore -= fig!.weight
+                }
+            }
+        }
+        return totalScore
+    }
+    func лучшийХод(_ field: BoardData, _ normalPlayer: Player, _ aiPlayer: Player) -> FromTooToo{
+        var coordsFromTo: FromTooToo?
+        var maxScore = 100000
+        for movePair in moveListGenerator(field, aiPlayer){
+            //копия поля
+            var boardController = BoardController(field.copy())
+            //копия игрока
+            var fakePlayer = aiPlayer.copy()
+            //предыдущий счет
+            var before = boardScore(field)
+            //результат хода
+            var result = boardController.moveOrEat(movePair.from, movePair.to, fakePlayer)
+            //проверяем что у нас нету шаха и плохого хода
+            if result.shakh != nil{ continue }
+            if result.status == false{ continue }
+            if result.pawnUpgrade != nil{ result.boardCondition.placeFigure(result.pawnUpgrade!.point, Queen(aiPlayer.color)) }
+            //счет после
+            var after = boardScore(result.boardCondition)
+            //проверяем счет...
+            var scoreResult = after - before
+            if scoreResult < maxScore{
+                maxScore = scoreResult
+                coordsFromTo = movePair
+                //...и делаем ход
+            }
+        }
+        
+        print(coordsFromTo)
+        return coordsFromTo!
     }
     
 }

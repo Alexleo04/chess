@@ -53,6 +53,32 @@ class Bishop_Test: XCTestCase {
         XCTAssertEqual([
         ], bishop.myPath(from: Point(letter: .a, digit: 1), to: Point(letter: .b, digit: 2)))
     }
+    func testMyMovementPosibility(){
+        arrayContains([
+            Point(letter: .b, digit: 1),
+            Point(letter: .c, digit: 2),
+            Point(letter: .d, digit: 3),
+            Point(letter: .f, digit: 5),
+            Point(letter: .g, digit: 6),
+            Point(letter: .h, digit: 7),
+            
+            Point(letter: .h, digit: 1),
+            Point(letter: .g, digit: 2),
+            Point(letter: .f, digit: 3),
+            Point(letter: .d, digit: 5),
+            Point(letter: .c, digit: 6),
+            Point(letter: .b, digit: 7),
+            Point(letter: .a, digit: 8)
+        ], bishop.whereCanImove(Point(letter: .e, digit: 4)))
+    }
+    func arrayContains(_ expected: [Point], _ actual: [Point]){
+        for m in expected{
+            XCTAssertTrue(actual.contains(m))
+        }
+        for t in actual{
+            XCTAssertTrue(expected.contains(t))
+        }
+    }
     override func tearDown() {
         super.tearDown()
         bishop = nil
