@@ -46,35 +46,86 @@ class Ai{
         }
         return totalScore
     }
+    
+    func minMax(_ depth: Int, _ isMaximizing: Bool, _ field: BoardData) -> Int{
+        if depth == 0{
+            return boardScore(field)
+        }
+        if isMaximizing{
+            var bestMove = -9999
+            for movePair in moveListGenerator(field, Player(.white)){
+                //копия поля
+                var boardController = BoardController(field.copy())
+                //копия игрока
+                var whitePlayer = Player(.white)
+                //результат хода
+                var result = boardController.moveOrEat(movePair.from, movePair.to, whitePlayer)
+                if result.pawnUpgrade != nil{
+                    result.boardCondition.placeFigure(result.pawnUpgrade!.point, Queen(whitePlayer.color))
+                }
+                //вызов рекурсии
+                bestMove = max(bestMove, minMax(depth-1, !isMaximizing, result.boardCondition))
+            }
+            return bestMove
+        }
+        var bestMove = 9999
+        for movePair in moveListGenerator(field, Player(.black)){
+            //копия поля
+            var boardController = BoardController(field.copy())
+            //копия игрока
+            var blackPlayer = Player(.black)
+            //результат хода
+            var result = boardController.moveOrEat(movePair.from, movePair.to, blackPlayer)
+            if result.pawnUpgrade != nil{
+                result.boardCondition.placeFigure(result.pawnUpgrade!.point, Queen(blackPlayer.color))
+            }
+            //вызов рекурсии
+            bestMove = max(bestMove, minMax(depth-1, !isMaximizing, result.boardCondition))
+        }
+        return bestMove
+    }
+    
     func лучшийХод(_ field: BoardData, _ normalPlayer: Player, _ aiPlayer: Player) -> FromTooToo{
         var coordsFromTo: FromTooToo?
-        var maxScore = 100000
+        var minScore = -100000
         for movePair in moveListGenerator(field, aiPlayer){
             //копия поля
             var boardController = BoardController(field.copy())
             //копия игрока
-            var fakePlayer = aiPlayer.copy()
-            //предыдущий счет
-            var before = boardScore(field)
+            var blackPlayer = Player(.black)
             //результат хода
-            var result = boardController.moveOrEat(movePair.from, movePair.to, fakePlayer)
-            //проверяем что у нас нету шаха и плохого хода
-            if result.shakh != nil{ continue }
-            if result.status == false{ continue }
-            if result.pawnUpgrade != nil{ result.boardCondition.placeFigure(result.pawnUpgrade!.point, Queen(aiPlayer.color)) }
-            //счет после
-            var after = boardScore(result.boardCondition)
-            //проверяем счет...
-            var scoreResult = after - before
-            if scoreResult < maxScore{
-                maxScore = scoreResult
+            var result = boardController.moveOrEat(movePair.from, movePair.to, blackPlayer)
+            var scoreResult = minMax(1, true, result.boardCondition)
+            if scoreResult > minScore{
+                minScore = scoreResult
                 coordsFromTo = movePair
-                //...и делаем ход
             }
         }
         
         print(coordsFromTo)
         return coordsFromTo!
+    }
+    
+    func moveScore(_ field: BoardData, _ aiPlayer: Player, _ movePair: FromTooToo) -> Int{
+        //копия поля
+        var boardController = BoardController(field.copy())
+        //копия игрока
+        var fakePlayer = aiPlayer.copy()
+        //предыдущий счет
+        var before = boardScore(field)
+        //результат хода
+        var result = boardController.moveOrEat(movePair.from, movePair.to, fakePlayer)
+        //проверяем что у нас нету шаха и плохого хода
+        if result.shakh != nil{ return 100000 }
+        if result.status == false{ return 100000 }
+        if result.pawnUpgrade != nil{
+            result.boardCondition.placeFigure(result.pawnUpgrade!.point, Queen(aiPlayer.color))
+        }
+        //счет после
+        var after = boardScore(result.boardCondition)
+        //формируем счет...
+        var scoreResult = after - before
+        return scoreResult
     }
     
 }
