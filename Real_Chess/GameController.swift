@@ -55,17 +55,18 @@ class GameController: ObservableObject{
                     result = nil
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
+                    //self.boardController.undoOnce()
                     self.player = self.currentPlayer()
                     var aiMoveCoords = self.ai.лучшийХод(self.boardController.getBoard().copy(), self.whiteGuy.copy(), self.blackGuy.copy())
                     self.result = self.boardController.moveOrEat(aiMoveCoords.from, aiMoveCoords.to, self.blackGuy)
-                    
+
                     if self.result?.shakh != nil{
                         self.shakh = true
                         print("finally it worked! 💀")
                     }else{
                         self.shakh = false
                     }
-                    
+
                     if self.result?.pawnUpgrade != nil{
                         self.realPawnUpgrade(theChosen: "Queen")
                     }else{

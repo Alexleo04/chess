@@ -78,8 +78,8 @@
             filePath = "Real_Chess/BoardController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "moveOrEat(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "Real_Chess/BoardController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "moveOrEat(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "Real_Chess/BoardController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "moveOrEat(_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "Real_Chess/BoardController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "castlingKind(_:_:_:_:)"
             landmarkType = "9">
          </BreakpointContent>

@@ -6,8 +6,16 @@
 //
 
 import Foundation
+
+struct Figoint{
+    var figure: Figure?
+    var point: Point
+}
+
 class BoardController: ObservableObject{
     var trueData: BoardData
+    var figointTo: Figoint?
+    var figointFrom: Figoint?
     
     func getBoard() -> BoardData{
         return trueData
@@ -52,6 +60,18 @@ class BoardController: ObservableObject{
         }
     }
     
+    func undoOnce(){
+        if figointFrom == nil || figointTo == nil{ return }
+        trueData.placeFigure(figointFrom!.point, figointFrom!.figure!)
+        if figointTo!.figure != nil{
+            trueData.placeFigure(figointTo!.point, figointTo!.figure!)
+        }else{
+            trueData.clearCell(figointTo!.point)
+        }
+        figointTo = nil
+        figointFrom = nil
+    }
+    
     func moveOrEat(_ from: Point, _ to: Point, _ thePlayer: Player) -> HodResult{
         var testHodResult = moveOrEatInternal(from, to, thePlayer.copy(), trueData.copy())
         var isShakh = shakhDetector(thePlayer.color, testHodResult.boardCondition)
@@ -78,6 +98,8 @@ class BoardController: ObservableObject{
         if figureInToCell == nil{
             //MOVE
             if canMove(from, to, false, data){
+                figointFrom = Figoint(figure: figureInFromCell, point: from)
+                figointTo = Figoint(figure: figureInToCell, point: to)
                 figureInFromCell!.wasMoved = true
                 data.placeFigure(to, figureInFromCell!)
                 data.clearCell(from)
@@ -94,6 +116,8 @@ class BoardController: ObservableObject{
         }else{
             //EAT
             if canMove(from, to, true, data){
+                figointFrom = Figoint(figure: figureInFromCell, point: from)
+                figointTo = Figoint(figure: figureInToCell, point: to)
                 thePlayer.archieve(eaten: data.getFigureByPoint(to)!)
                 data.clearCell(to)
                 data.placeFigure(to, figureInFromCell!)
