@@ -62,7 +62,7 @@ struct ContentView: View {
             Spacer()
             
             //ресуем чей ход
-            if gameController.playerSelector().color == PlayerColor.black{
+            if gameController.currentPlayer().color == PlayerColor.black{
                 
                 HStack{
                     Spacer()
@@ -136,7 +136,7 @@ struct ContentView: View {
                             let point = Helper.createPoint(letterNum: column, digitNum: convertedRow)
                             
                             var realisUrgent: Bool = gameController.isUrgent(point: point)
-                            var isPressed: Bool = point == gameController.fromClickedCell
+                            var isPressed: Bool = point == gameController.cellFrom
 //
                             let cellContent: String = Helper.getGlyphNameFromFigure(gameController.boardController.getBoard().getFigureByPoint(point))
 //
@@ -192,9 +192,9 @@ struct ContentView: View {
             }
             }
         }
-        .alert(isPresented: $gameController.shakh) {
-                    Alert(title: Text("Shakh!"), message: Text("This app is meant to be fun for you and your friends. If you get shakh please do not cheat, unless you want to bug your friends!"), dismissButton: .default(Text("Got it!")))
-                }
+//        .alert(isPresented: $gameController.shakh) {
+//                    Alert(title: Text("Shakh!"), message: Text("This app is meant to be fun for you and your friends. If you get shakh please do not cheat, unless you want to bug your friends!"), dismissButton: .default(Text("Got it!")))
+//                }
     }
 }
 

@@ -59,4 +59,22 @@ class Tower: Figure{
         }
         return distancePro
     }
+    override func whereCanImove(_ point: Point) -> [Point] {
+        var movableCoords: [Point] = []
+        for t in 1...BoardData.row{
+            if t != point.digit{
+                movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue, digitNum: t))
+            }
+        }
+        for m in 1...BoardData.column{
+            if m != point.letter.rawValue{
+                movableCoords.append(Helper.createPoint(letterNum: m, digitNum: point.digit))
+            }
+        }
+        return movableCoords;
+    }
+    
+//    override func whereCanImove(_ point: Point) -> [Point] {
+//        <#code#>
+//    }
 }

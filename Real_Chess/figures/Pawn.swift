@@ -10,7 +10,26 @@ class Pawn: Figure{
     init(_ color: PlayerColor){
         super.init(color, "pawn", 10)
     }
-
+    
+    override func whereCanImove(_ point: Point) -> [Point]{
+        var movableCoords: [Point] = []
+        var raceDirection: Int = 1
+        if self.color == PlayerColor.black{
+            raceDirection = -1
+        }
+        movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue, digitNum: point.digit+raceDirection))
+        if point.letter != .a{
+            movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue-1, digitNum: point.digit+raceDirection))
+        }
+        if point.letter != .h{
+            movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue+1, digitNum: point.digit+raceDirection))
+        }
+        if (self.color == PlayerColor.white && point.digit == 2) || (self.color == PlayerColor.black && point.digit == 7){
+            movableCoords.append(Helper.createPoint(letterNum: point.letter.rawValue, digitNum: point.digit+2*raceDirection))
+        }
+        return movableCoords;
+    }
+    
     override func canMove(from: Point, to: Point) -> Bool{
         if self.color == PlayerColor.white{
             if from.digit+1 == to.digit && from.letter == to.letter{
