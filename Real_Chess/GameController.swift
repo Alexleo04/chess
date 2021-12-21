@@ -11,8 +11,10 @@ class GameController: ObservableObject{
     @Published var cellFrom: Point?
     @Published var boardController: BoardController = BoardController()
     @Published var couterAndRedrawer: Int = 0
+    @Published var pawnUpgrade: Bool = false
     @Published var shakh: Bool = false
     var ходCounter: Int = 0
+    var aiEnabled: Bool = true
 
     var ai = Ai()
     
@@ -44,34 +46,37 @@ class GameController: ObservableObject{
             }else{
                 shakh = false
             }
-            
+            pawnUpgrade = (result?.pawnUpgrade != nil)
             if !result!.status{
                 print("Turn cant be made")
                 return
             }
+            
             if result?.pawnUpgrade == nil{
                 ходCounter += 1
                 if result?.shakh == nil{
                     result = nil
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.player = self.currentPlayer()
-                    var aiMoveCoords = self.ai.лучшийХод(self.boardController.getBoard().copy(), self.whiteGuy.copy(), self.blackGuy.copy())
-                    self.result = self.boardController.moveOrEat(aiMoveCoords.from, aiMoveCoords.to, self.blackGuy)
-                    
-                    if self.result?.shakh != nil{
-                        self.shakh = true
-                        print("finally it worked! 💀")
-                    }else{
-                        self.shakh = false
+                if aiEnabled{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.player = self.currentPlayer()
+                        var aiMoveCoords = self.ai.лучшийХод(self.boardController.getBoard().copy(), self.whiteGuy.copy(), self.blackGuy.copy())
+                        self.result = self.boardController.moveOrEat(aiMoveCoords.from, aiMoveCoords.to, self.blackGuy)
+
+                        if self.result?.shakh != nil{
+                            self.shakh = true
+                            print("finally it worked! 💀")
+                        }else{
+                            self.shakh = false
+                        }
+
+                        if self.result?.pawnUpgrade != nil{
+                            self.realPawnUpgrade(theChosen: "Queen")
+                        }else{
+                            self.ходCounter += 1
+                        }
+                        self.couterAndRedrawer += 1
                     }
-                    
-                    if self.result?.pawnUpgrade != nil{
-                        self.realPawnUpgrade(theChosen: "Queen")
-                    }else{
-                        self.ходCounter += 1
-                    }
-                    self.couterAndRedrawer += 1
                 }
             }
         }else{
@@ -108,6 +113,7 @@ class GameController: ObservableObject{
             ходCounter += 1
             result = nil
         }
+        pawnUpgrade = false
     }
     
     func isUrgent(point: Point) -> Bool{
@@ -118,7 +124,8 @@ class GameController: ObservableObject{
         }
     }
     
-    init(){
+    init(aiEnabled: Bool){
+        self.aiEnabled = aiEnabled
 //        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
 //        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
 //        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))

@@ -11,8 +11,12 @@ let colorCellBlack: Color = Color.blue
 let letters: [Int:String] = [1: "a", 2: "b", 3: "c", 4: "d", 5: "e", 6: "f", 7: "g", 8: "h"]
 
 struct ContentView: View {
-    @StateObject var gameController: GameController = GameController()
+    @StateObject var gameController: GameController
 
+    init(aiEnabled: Bool){
+        _gameController = StateObject(wrappedValue:GameController(aiEnabled: aiEnabled))
+    }
+    
     func colorCellGenerator(_ isOdd: Bool, _ isPressed: Bool, _ isUrgent: Bool) -> Color{
         print(isUrgent)
         if isPressed{
@@ -76,20 +80,20 @@ struct ContentView: View {
                     Spacer()
                 }
                 Spacer()
-                HStack{
-                    Spacer()
-                    VStack{
-                        Text("White Score:")
-                        Text(String(gameController.whiteGuy.score))
-                    }
-                    Spacer()
-                    Spacer()
-                    VStack{
-                        Text("Black Score:")
-                        Text(String(gameController.blackGuy.score))
-                    }
-                    Spacer()
-                }
+//                HStack{
+//                    Spacer()
+//                    VStack{
+//                        Text("White Score:")
+//                        Text(String(gameController.whiteGuy.score))
+//                    }
+//                    Spacer()
+//                    Spacer()
+//                    VStack{
+//                        Text("Black Score:")
+//                        Text(String(gameController.blackGuy.score))
+//                    }
+//                    Spacer()
+//                }
             }else{
                 HStack{
                     Spacer()
@@ -102,20 +106,20 @@ struct ContentView: View {
                     Spacer()
                 }
                 Spacer()
-                HStack{
-                    Spacer()
-                    VStack{
-                        Text("White Score:")
-                        Text(String(gameController.whiteGuy.score))
-                    }
-                    Spacer()
-                    Spacer()
-                    VStack{
-                        Text("Black Score:")
-                        Text(String(gameController.blackGuy.score))
-                    }
-                    Spacer()
-                }
+//                HStack{
+//                    Spacer()
+//                    VStack{
+//                        Text("White Score:")
+//                        Text(String(gameController.whiteGuy.score))
+//                    }
+//                    Spacer()
+//                    Spacer()
+//                    VStack{
+//                        Text("Black Score:")
+//                        Text(String(gameController.blackGuy.score))
+//                    }
+//                    Spacer()
+//                }
             }
             Spacer()
             HStack(spacing: 0){
@@ -175,11 +179,21 @@ struct ContentView: View {
                 }
             }
             Group{
-            HStack(spacing: 0){
-                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_queen", funcHandler: pawnHandler, askedFigure: "Queen")
-                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_tower", funcHandler: pawnHandler, askedFigure: "Tower")
-                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_bishop", funcHandler: pawnHandler, askedFigure: "Bishop")
-                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_knight", funcHandler: pawnHandler, askedFigure: "Knight")
+            if gameController.pawnUpgrade{
+                HStack(spacing: 0){
+                    if gameController.currentPlayer().color == PlayerColor.white{
+                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_queen", funcHandler: pawnHandler, askedFigure: "Queen")
+                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_tower", funcHandler: pawnHandler, askedFigure: "Tower")
+                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_bishop", funcHandler: pawnHandler, askedFigure: "Bishop")
+                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_knight", funcHandler: pawnHandler, askedFigure: "Knight")
+                    }
+                    if gameController.currentPlayer().color == PlayerColor.black{
+                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_queen", funcHandler: pawnHandler, askedFigure: "Queen")
+                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_tower", funcHandler: pawnHandler, askedFigure: "Tower")
+                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_bishop", funcHandler: pawnHandler, askedFigure: "Bishop")
+                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_knight", funcHandler: pawnHandler, askedFigure: "Knight")
+                    }
+                }
             }
             Spacer()
             HStack(spacing: 0){
@@ -269,11 +283,11 @@ struct Еaten: View{
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView(aiEnabled: false)
+//    }
+//}
 
 //func getColor(_ color: String) -> Color{
 //    switch color {
