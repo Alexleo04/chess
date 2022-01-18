@@ -18,7 +18,7 @@ struct ContentView: View {
     }
     
     func colorCellGenerator(_ isOdd: Bool, _ isPressed: Bool, _ isUrgent: Bool) -> Color{
-        print(isUrgent)
+        
         if isPressed{
             return Color.green
         }
@@ -44,24 +44,7 @@ struct ContentView: View {
         VStack{
             //отображение съедания черными
                 
-            HStack(spacing: 0){
-                ForEach((0..<8)) { idx in
-                    var visualAchiever = gameController.blackGuy.figureOrNothin(idx: idx)//съедание черными
-                    let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
-                    Еaten(color: Color.white, content: cellGlyph)//отрисoвка
-                }
-            }
-                
-            if gameController.blackGuy.warehouse.count > 8{
-                
-                HStack(spacing: 0){
-                    ForEach((8..<16)) { idx in
-                        var visualAchiever = gameController.blackGuy.figureOrNothin(idx: idx)//съедание черными
-                        let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
-                        Еaten(color: Color.white, content: cellGlyph)//отрисoвка
-                    }
-                }
-            }
+            BenchOfEatenFigures(player: gameController.blackGuy)
             
             Spacer()
             
@@ -168,16 +151,6 @@ struct ContentView: View {
             
             
             Spacer()
-            if gameController.whiteGuy.warehouse.count > 8{
-
-                HStack(spacing: 0){
-                    ForEach((8..<16)) { idx in
-                        var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: idx)//съедание черными
-                        let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
-                        Еaten(color: Color.white, content: cellGlyph)//отрисoвка
-                    }
-                }
-            }
             Group{
             if gameController.pawnUpgrade{
                 HStack(spacing: 0){
@@ -196,14 +169,7 @@ struct ContentView: View {
                 }
             }
             Spacer()
-            HStack(spacing: 0){
-                ForEach((0..<8)) { col in
-                    var visualAchiever = gameController.whiteGuy.figureOrNothin(idx: col)
-                    let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
-                    
-                    Еaten(color: Color.white, content: cellGlyph)
-                }
-            }
+                BenchOfEatenFigures(player: gameController.whiteGuy)
             }
         }
 //        .alert(isPresented: $gameController.shakh) {
@@ -231,6 +197,40 @@ struct Cell: View{
         .background(color)
         .contentShape(Rectangle())
         .border(Color.black, width: 0.5)
+    }
+}
+
+struct BenchOfEatenFigures: View{
+    var player: Player
+    var body: some View{
+        HStack(spacing: 0){
+            ForEach((0..<8)) { idx in
+                let visualAchiever = player.figureOrNothin(idx: idx)//съедание черными
+                let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                Еaten(color: Color.white, content: cellGlyph)//отрисoвка
+            }
+        }
+        .print(player.warehouse.count)
+            
+        if player.warehouse.count > 8{
+            
+            HStack(spacing: 0){
+                ForEach((8..<16)) { idx in
+                    let visualAchiever = player.figureOrNothin(idx: idx)//съедание черными
+                    let cellGlyph: String = Helper.getGlyphNameFromFigure(visualAchiever)
+                    Еaten(color: Color.white, content: cellGlyph)//отрисoвка
+                }
+            }
+        }
+    }
+    
+    
+}
+
+extension View {
+    func print(_ value: Any) -> Self {
+        Swift.print(value)
+        return self
     }
 }
 
