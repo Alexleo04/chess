@@ -44,7 +44,7 @@ struct ContentView: View {
         VStack{
             //отображение съедания черными
                 
-            BenchOfEatenFigures(player: gameController.blackGuy)
+            BenchOfEatenFigures(player: $gameController.blackGuy)
             
             Spacer()
             
@@ -153,23 +153,13 @@ struct ContentView: View {
             Spacer()
             Group{
             if gameController.pawnUpgrade{
-                HStack(spacing: 0){
-                    if gameController.currentPlayer().color == PlayerColor.white{
-                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_queen", funcHandler: pawnHandler, askedFigure: "Queen")
-                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_tower", funcHandler: pawnHandler, askedFigure: "Tower")
-                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_bishop", funcHandler: pawnHandler, askedFigure: "Bishop")
-                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_knight", funcHandler: pawnHandler, askedFigure: "Knight")
-                    }
-                    if gameController.currentPlayer().color == PlayerColor.black{
-                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_queen", funcHandler: pawnHandler, askedFigure: "Queen")
-                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_tower", funcHandler: pawnHandler, askedFigure: "Tower")
-                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_bishop", funcHandler: pawnHandler, askedFigure: "Bishop")
-                        PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_knight", funcHandler: pawnHandler, askedFigure: "Knight")
-                    }
-                }
+                
+                PawnUpgradeView(player: gameController.currentPlayer(), pawnHandler: pawnHandler)
+                
+                
             }
             Spacer()
-                BenchOfEatenFigures(player: gameController.whiteGuy)
+                BenchOfEatenFigures(player: $gameController.whiteGuy)
             }
         }
 //        .alert(isPresented: $gameController.shakh) {
@@ -201,7 +191,7 @@ struct Cell: View{
 }
 
 struct BenchOfEatenFigures: View{
-    var player: Player
+    @Binding var player: Player
     var body: some View{
         HStack(spacing: 0){
             ForEach((0..<8)) { idx in
@@ -223,8 +213,27 @@ struct BenchOfEatenFigures: View{
             }
         }
     }
-    
-    
+}
+
+struct PawnUpgradeView: View{
+    var player: Player
+    var pawnHandler: (String) -> Void
+    var body: some View{
+        HStack(spacing: 0){
+            if player.color == PlayerColor.white{
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_queen", funcHandler: pawnHandler, askedFigure: "Queen")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_tower", funcHandler: pawnHandler, askedFigure: "Tower")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_bishop", funcHandler: pawnHandler, askedFigure: "Bishop")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_white_knight", funcHandler: pawnHandler, askedFigure: "Knight")
+            }
+            if player.color == PlayerColor.black{
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_queen", funcHandler: pawnHandler, askedFigure: "Queen")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_tower", funcHandler: pawnHandler, askedFigure: "Tower")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_bishop", funcHandler: pawnHandler, askedFigure: "Bishop")
+                PawnUpgradeDemostraitor(color: Color.white, theGlifer: "figure_black_knight", funcHandler: pawnHandler, askedFigure: "Knight")
+            }
+        }
+    }
 }
 
 extension View {
