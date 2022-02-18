@@ -126,22 +126,24 @@ class GameController: ObservableObject{
     
     init(aiEnabled: Bool){
         self.aiEnabled = aiEnabled
-//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        whiteGuy.archieve(eaten: Pawn(PlayerColor.white))
-//
-//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
-//        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+        whiteGuy.archieve(eaten: Pawn(PlayerColor.black))
+
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
+        blackGuy.archieve(eaten: Pawn(PlayerColor.white))
     }
 }
