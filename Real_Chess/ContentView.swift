@@ -33,7 +33,7 @@ struct ContentView: View {
     }
     
     func clickHandler(point: Point){
-        gameController.moveProcesing(point: point)
+        gameController.recordPoint(point: point)
     }
     
     func pawnHandler(fig: String){
@@ -50,59 +50,37 @@ struct ContentView: View {
             
         
         VStack{
-            //отображение съедания черными
-                
             
             
-            Spacer()
             
-            //ресуем чей ход
-//            if gameController.currentPlayer().color == PlayerColor.black{
-//
-//                HStack{
-//                    Spacer()
-//
-//                    Text("Black's")
-//                        .foregroundColor(Color.white)
-//                        .padding(5)
-//                        .border(Color.black, width: 0.5)
-//                        .background(Color.black)
-//                    Text(" turn")
-//                    Spacer()
-//                }
-//                Spacer()
-//            }else{
-//                HStack{
-//                    Spacer()
-//                    Text("White's")
-//                        .foregroundColor(Color.black)
-//                        .padding(5)
-//                        .border(Color.black, width: 0.5)
-//                        .background(Color.white)
-//                    Text(" turn")
-//                    Spacer()
-//                }
-//                Spacer()
-//            }
             Spacer()
             
             Board(gameController: gameController, clickHandler: clickHandler)
             
             Spacer()
-            Group{
-            if gameController.pawnUpgrade{
-                PawnUpgradeView(player: gameController.currentPlayer(), pawnHandler: pawnHandler)
-            }
-            Spacer()
-                
-            }
         }
         VStack{
             BenchOfEatenFigures(player: $gameController.blackGuy, isActive: gameController.currentPlayer().color == PlayerColor.black || gameController.aiEnabled, isRotated: gameController.aiEnabled).rotationEffect(.degrees(-180))
             
+            Group{
+            if gameController.pawnUpgrade && gameController.currentPlayer().color == PlayerColor.black{
+                PawnUpgradeView(player: gameController.currentPlayer(), pawnHandler: pawnHandler).rotationEffect(.degrees(-180))
+            }
+            Spacer()
+                
+            }
+            
             Spacer()
             
-            BenchOfEatenFigures(player: $gameController.whiteGuy, isActive: gameController.currentPlayer().color == PlayerColor.white, isRotated: false)
+            Group{
+            Spacer()
+            if gameController.pawnUpgrade && gameController.currentPlayer().color == PlayerColor.white{
+                PawnUpgradeView(player: gameController.currentPlayer(), pawnHandler: pawnHandler)
+            }
+                
+            }
+            
+            BenchOfEatenFigures(player: $gameController.whiteGuy, isActive: gameController.currentPlayer().color == PlayerColor.white, isRotated: false)//.offset(x: 0, y: 20)
         }
         .ignoresSafeArea()
     }
@@ -154,11 +132,11 @@ struct BenchOfEatenFigures: View{
         ZStack{
             if isActive{
                 Color.white
-                    .frame(width: 400, height: 150)
+                    .frame(width: UIScreen.main.bounds.size.width, height: player.warehouse.count > 8 ? 150 : 110)
                     .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
             }else{
                 Color.white.blur(radius: 50)
-                    .frame(width: 350, height: 120)
+                    .frame(width: UIScreen.main.bounds.size.width, height: player.warehouse.count > 8 ? 150 : 110)
                     .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
             }
             VStack{
@@ -221,7 +199,7 @@ struct Board: View{
                                 let point = Helper.createPoint(letterNum: column, digitNum: convertedRow)
                                 
                                 var realisUrgent: Bool = gameController.isUrgent(point: point)
-                                var isPressed: Bool = point == gameController.cellFrom
+                                var isPressed: Bool = point == gameController.pointFrom
         //
                                 let cellContent: String = Helper.getGlyphNameFromFigure(gameController.boardController.getBoard().getFigureByPoint(point))
         //
@@ -317,7 +295,7 @@ struct Еaten: View{
         }
         .frame(width: 37.5, height: 37.5)
         .contentShape(Rectangle())
-        .border(Color.black, width: 0.5)
+        //.border(Color.black, width: 0.5)
     }
 }
 
