@@ -14,9 +14,9 @@
             filePath = "Real_Chess/GameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "moveProcesing(point:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "moveProcesing(pointFrom:pointTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -62,9 +62,9 @@
             filePath = "Real_Chess/GameController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "moveProcesing(point:)"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "moveProcesing(pointFrom:pointTo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -120,7 +120,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C16DC952-09CC-4A8F-B64F-C84F8901C3A5"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Real_Chess/BoardController.swift"
@@ -130,6 +130,102 @@
             endingLineNumber = "242"
             landmarkName = "castlingKind(_:_:_:_:)"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B3D2966E-8BFD-4ED5-B006-C8CF2CF89927"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Real_Chess/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B3D2966E-8BFD-4ED5-B006-C8CF2CF89927 - 2b07abc41995b464"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Group&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, Real_Chess.PawnUpgradeView, SwiftUI.Spacer)&gt;&gt;, SwiftUI.Spacer, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.position(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI.Group&lt;SwiftUI.TupleView&lt;(Real_Chess.PawnUpgradeView, SwiftUI.Spacer)&gt;&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Group&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, Real_Chess.PawnUpgradeView, SwiftUI.Spacer)&gt;&gt;, SwiftUI.Spacer, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.position(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI.Group&lt;SwiftUI.TupleView&lt;(Real_Chess.PawnUpgradeView, SwiftUI.Spacer)&gt;&gt;)&gt;&gt;, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0)&gt; in Real_Chess.ContentView.body.getter : some"
+                  moduleName = "Real_Chess"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alex-leonov/Library/Autosave%20Information/Real_Chess/Real_Chess/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "466">
+               </Location>
+               <Location
+                  uuid = "B3D2966E-8BFD-4ED5-B006-C8CF2CF89927 - d0b773d72dc3a8b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #2 (Real_Chess.Point) -&gt; () in implicit closure #1 (Real_Chess.ContentView) -&gt; (Real_Chess.Point) -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Group&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, Real_Chess.PawnUpgradeView, SwiftUI.Spacer)&gt;&gt;, SwiftUI.Spacer, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.position(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI.Group&lt;SwiftUI.TupleView&lt;(Real_Chess.PawnUpgradeView, SwiftUI.Spacer)&gt;&gt;)&gt; in closure #1 () -&gt; SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0, SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Group&lt;SwiftUI.TupleView&lt;(SwiftUI.Spacer, Real_Chess.PawnUpgradeView, SwiftUI.Spacer)&gt;&gt;, SwiftUI.Spacer, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.position(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.Spacer, SwiftUI.Group&lt;SwiftUI.TupleView&lt;(Real_Chess.PawnUpgradeView, SwiftUI.Spacer)&gt;&gt;)&gt;&gt;, &lt;&lt;opaque return type of (extension in SwiftUI):SwiftUI.View.ignoresSafeArea(_: SwiftUI.SafeAreaRegions, edges: SwiftUI.Edge.Set) -&gt; some&gt;&gt;.0)&gt; in Real_Chess.ContentView.body.getter : some"
+                  moduleName = "Real_Chess"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alex-leonov/Library/Autosave%20Information/Real_Chess/Real_Chess/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FFC6F772-74BB-42A6-92E1-A4831F35154D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Real_Chess/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2962CF1-95C6-4BE0-A0D5-357AA3B49AB3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Real_Chess/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "649"
+            endingLineNumber = "649"
+            landmarkName = "type"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3FA1A31E-6DD3-4CE9-81A1-886E779D1F0A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Real_Chess/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "651"
+            endingLineNumber = "651"
+            landmarkName = "type"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

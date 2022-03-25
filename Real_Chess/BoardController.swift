@@ -23,9 +23,9 @@ class BoardController: ObservableObject{
     }
     
     func fillBoard(){
-//        trueData.placeFigure(Point(letter: .d, digit: 5), Pawn(.black))
-//        trueData.placeFigure(Point(letter: .f, digit: 4), Tower(.white))
-//        trueData.placeFigure(Point(letter: .b, digit: 2), Pawn(.black))
+        trueData.placeFigure(Point(letter: .d, digit: 5), Pawn(.black))
+        trueData.placeFigure(Point(letter: .f, digit: 4), Tower(.white))
+        trueData.placeFigure(Point(letter: .b, digit: 2), Pawn(.black))
         trueData.placeFigure(Point(letter: .a, digit: 1), Tower(.white))
         trueData.placeFigure(Point(letter: .g, digit: 1), Knight(.white))
         trueData.placeFigure(Point(letter: .f, digit: 1), Bishop(.white))
